@@ -3,7 +3,7 @@
  */
 
 //RotationsGeschwindigkeit von Player
-var rotationSpeed = 5;
+var rotationSpeed = 10;
 
 //Player-Particle-Lifetime
 var playerParticleLifetime = 2000;
