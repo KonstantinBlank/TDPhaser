@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Your PIT Game</title>
+    <script src="js/phaser.min.js"></script>
+    <script src="js/boot.js"></script>
+    <script src="js/preload.js"></script>
+    <script src="js/gametitle.js"></script>
+    <script src="js/thegame.js"></script>
+    <script src="js/gameover.js"></script>
+    <script src="js/settings.js"></script>
+
+    <script type="text/javascript">
+        WebFontConfig = {
+            google: { families: [ 'Rock+Salt::latin' ] }
+        };
+        (function() {
+            var wf = document.createElement('script');
+            wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+            '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+            wf.type = 'text/javascript';
+            wf.async = 'true';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(wf, s);
+        })(); </script>
+
+
+
+    <style> body{
+      margin:0;
+      background:black;
+    }
+    </style>
+
+    <script>
+        (function() {
+            //Game initialisieren
+            var game = new Phaser.Game(1000, 800, Phaser.AUTO, "game");
+
+            //States hinzufügen
+            game.state.add("Boot",boot);
+            game.state.add("Preload",preload);
+            game.state.add("GameTitle",gametitle);
+            game.state.add("TheGame",thegame);
+            game.state.add("GameOver", gameover);
+
+            //Start BootScreen
+            game.state.start("Boot");
+        })();
+    </script>
+
+</head>
+<body>
+
+
+
+</body>
+</html>
