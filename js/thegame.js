@@ -53,7 +53,7 @@ thegame.prototype = {
         //Bei Mouseclick/Touchklick das Player-Movement Dash mit Partikel Effekt
         if (this.game.input.activePointer.leftButton.isDown)
         {
-                this.particleDirtLine();
+                //this.particleDirtLine();
                 this.dash();
         }
 
@@ -79,7 +79,7 @@ thegame.prototype = {
     },
 
     //PartikelSystem für Player-Dirtlines hinter sich her ziehen
-    particleDirtLine : function()
+    /*particleDirtLine : function()
     {
         var px = player.angle;
         var py = player.angle;
@@ -92,7 +92,7 @@ thegame.prototype = {
 
         emitter1.start(true, playerParticleLifetime,null,playerParticleAmount);
 
-},
+},*/
 
 
 };
