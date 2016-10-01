@@ -7,7 +7,7 @@ var thegame = function(game){
   var layer;
 //  var _ListOfTurrets = new List();
   var _Player = new class_player(this, "KKJLD");
-  var _TowerListe = [];
+  this._TowerListe = [];
   var cursors;
   var marker;
 };
@@ -58,10 +58,12 @@ setzeTower : function(){
 
       var x = layer.getTileX(this.game.input.activePointer.worldX);
       var y = layer.getTileY(this.game.input.activePointer.worldY);
-      console.log(this.map);
-      if(1==1)
+      var index = x+"-"+y;
+      if(this.map.getTile(x,y,layer).index != 967 && this._TowerListe[index] == undefined)
       {
+        console.log("Tower gebaut");
         var newTower = this.game.add.sprite(x*32,y*32,"mage");
+        this._TowerListe[index] = newTower;
       }
 },
 
