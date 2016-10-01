@@ -19,7 +19,7 @@ var thegame = function(game){
   var text2;
   var text3;
   var showButtons = false;
-  var _enemyclass;
+  var _enemyclass = null;
 
 };
 
@@ -54,7 +54,7 @@ thegame.prototype = {
        this.game.input.addMoveCallback(this.updateMarker, this);
 
        this.game.input.onDown.add(this.getTileProperties, this);
-       this.game.input.onDown.add(this.ckick, this);
+       this.game.input.onDown.add(this.click, this);
 
        this.game.physics.startSystem(Phaser.Physics.ARCADE);
 
@@ -158,7 +158,7 @@ update : function (){
   //enemy1.anchor.setTo(0.5, 0.5);
   //this.game.physics.enable(enemy1, Phaser.Physics.ARCADE);
   enemies.forEach(function(enemy) {
-    _enemyclass.checkPath(enemy); //IMPLEMENTIEREN!
+    this._enemyclass.checkPath(enemy); //IMPLEMENTIEREN!
   });
 },
 
