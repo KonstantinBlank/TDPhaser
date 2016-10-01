@@ -5,7 +5,9 @@ var thegame = function(game){
 
   var map;
   var layer;
-  var cursors;
+  var cursors;(
+  var _ListOfTurrets = new List();
+  var _Player = new class_player(this, "KKJLD");
 
 };
 
@@ -37,7 +39,7 @@ thegame.prototype = {
 update: function () {
 
   this.arrowscroll();
-  
+
 },
 
 arrowscroll : function(){
@@ -57,6 +59,39 @@ arrowscroll : function(){
          {
          this.game.camera.y += 4;
          }
+   },
+
+   upgrade : function(pTurret, pStat)
+   {
+     switch(pStat)
+     {
+      case 1://Schaden erhöhen
+         if(pTurret.get_DamagePrice() <= _Player.getCurrency())
+         {
+           pTurret.upgrade(pStat);
+           _Player.reduceCurrency(pTurret.get_DamagePrice());
+         }
+        break;
+
+      case 2://Speed erhöhen
+      if(pTurret.get_SpeedPrice() <= _Player.getCurrency())
+      {
+        pTurret.upgrade(pStat);
+        _Player.reduceCurrency(pTurret.get_SpeedPrice());
+      }
+        break;
+
+      case 3://Range erhöhen
+      if(pTurret.get_RangePrice() <= _Player.getCurrency())
+      {
+        pTurret.upgrade(pStat);
+        _Player.reduceCurrency(pTurret.get_RangePrice());
+      }
+        break;
+
+      default:
+        break;
+     }
    }
 };
 
