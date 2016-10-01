@@ -7,7 +7,6 @@ var thegame = function(game){
   var map;
   var layer;
 //  var _ListOfTurrets = new List();
-  var _Player = new class_player(this, "KKJLD");
   this._TowerListe = [];
   var _nicht_bebaubar;
   var cursors;
@@ -18,6 +17,7 @@ var thegame = function(game){
   var text1;
   var text2;
   var text3;
+  var selectedTower;
   var showButtons = false;
   var _enemyclass;
 
@@ -75,6 +75,15 @@ thegame.prototype = {
 
 },
 
+killLeiste : function()
+{
+  this.button1.kill();
+  this.text1.kill();
+  this.button2.kill();
+  this.text2.kill();
+  this.button3.kill();
+  this.text3.kill();
+},
 
 
 
@@ -91,12 +100,13 @@ click : function(){
         if (this._TowerListe[index] == undefined)
         {
           var newTower = new turret_Prefab(this.game,x*32,y*32,"saggitaurus");
-          this._TowerListe[index] = newTower;i
+          this._TowerListe[index] = newTower;
         }
 
         //this.game.add.sprite(this.game.world.centerX,this.game.world.height-200,'playerRocket');
         else if (this._TowerListe[index] != undefined) {
           this.showButtons = true;
+          this.selectedTower = index;
           this.text1 = this.game.add.text(2*32,17*32,'Damage:'+this._TowerListe[index].getDamage(),{font: '25px Roman',fill: '#FFFFFF'});
           this.text2 = this.game.add.text(8*32,17*32,'Speed:'+this._TowerListe[index].getAttackSpeed(),{font: '25px Roman',fill: '#FFFFFF'});
           this.text3 = this.game.add.text(14*32,17*32,'Range:'+this._TowerListe[index].getRange(),{font: '25px Roman',fill: '#FFFFFF'});
@@ -104,30 +114,24 @@ click : function(){
           this.button2 =  this.game.add.sprite(12*32,17*32,'button');
           this.button3 =  this.game.add.sprite(18*32,17*32,'button');
         }
-        else {
-          //this._nicht_bebaubar = this.game.add.text((this.game.world.width)-650,this.game.world.centerY,'Kann dort nicht gebaut werden!',{font : '25px Roman', fill: '#272421'});
-        //this.game.time.events.add(2000, function() {    this.game.add.tween(Kann dort nicht gebaut werden!).to({y: 0}, 1500, Phaser.Easing.Linear.None, true);    this.game.add.tween(Kann dort nicht gebaut werden!).to({alpha: 0}, 1500, Phaser.Easing.Linear.None, true);}, this);
-
-        }
-
       }
       else if (this.map.getTile(x,y,layer).index == 68 && this.showButtons)
       {
         switch (index) {
-          case 6-17:
-              this.upgrade(this._TowerListe[index],1);
-              this.button1.kill;
-              this.text1.kill
+          case "6-17":
+              this.upgrade(this._TowerListe[this.selectedTower],1);
+              this.showButtons = false;
+              this.killLeiste();
             break;
-            case 12-17:
-                this.upgrade(this._TowerListe[index],2);
-                this.button2.kill;
-                this.text2.kill
+            case "12-17":
+                this.upgrade(this._TowerListe[this.selectedTower],2);
+                this.showButtons = false;
+                this.killLeiste();
               break;
-              case 18-17:
-                  this.upgrade(this._TowerListe[index],3);
-                  this.button3.kill;
-                  this.text3.kill
+              case "18-17":
+                  this.upgrade(this._TowerListe[this.selectedTower],3);
+                  this.showButtons = false;
+                  this.killLeiste();
                 break;
           default:
         }
@@ -158,7 +162,7 @@ updateMarker : function () {
 update : function (){
   //this.game.physics.arcade.overlap(this._shots, , bulletHitPlayer, null, this);
 
-  console.log(testenemy.position.x);
+  //console.log(testenemy.position.x);
   //enemy1 = enemies.create(144,16,'enemyeye')
   //enemy1.enablebodie = true;
   //enemy1.anchor.setTo(0.5, 0.5);
@@ -183,26 +187,26 @@ update : function (){
      switch(pStat)
      {
       case 1://Schaden erhöhen
-         if(pTurret.get_DamagePrice() <= _Player.getCurrency())
+         if(pTurret.get_DamagePrice() <= this._Player.getCurrency())
          {
            pTurret.upgrade(pStat);
-           _Player.reduceCurrency(pTurret.get_DamagePrice());
+           this._Player.reduceCurrency(pTurret.get_DamagePrice());
          }
         break;
 
       case 2://Speed erhöhen
-      if(pTurret.get_SpeedPrice() <= _Player.getCurrency())
+      if(pTurret.get_SpeedPrice() <= this._Player.getCurrency())
       {
         pTurret.upgrade(pStat);
-        _Player.reduceCurrency(pTurret.get_SpeedPrice());
+        this._Player.reduceCurrency(pTurret.get_SpeedPrice());
       }
         break;
 
       case 3://Range erhöhen
-      if(pTurret.get_RangePrice() <= _Player.getCurrency())
+      if(pTurret.get_RangePrice() <= this._Player.getCurrency())
       {
         pTurret.upgrade(pStat);
-        _Player.reduceCurrency(pTurret.get_RangePrice());
+        this._Player.reduceCurrency(pTurret.get_RangePrice());
       }
         break;
 
