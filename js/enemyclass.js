@@ -1,13 +1,14 @@
 enemyclass = function ()
 {
-  var _speed = 0;
-  var _hp = 0;
-  var _dmg = 0;
-  this._targetx = 0;
-  this._targety = 0;
-  var _sprite = null;
-  var _path = null;
-  var _waypoint = 0;
+
+var _path = null;
+var _waypoint = 0;
+  this._speed = 0;
+  this._hp = 0;
+  this._dmg = 0;
+  this.x = 0;
+  this.y = 0;
+
 }
 
   enemyclass.prototype = {
@@ -40,6 +41,16 @@ enemyclass = function ()
     getDmg : function()
     {
       return _dmg;
+    },
+
+    getXCoordinate : function()
+    {
+      return this.x;
+    },
+
+    getYCoordinate : function()
+    {
+      return this.y;
     },
 
     dealDmg : function (pDamage)

@@ -4,57 +4,62 @@
 
 //Attribute:
 
-class_player = function(game, pName){
+function class_player(game, pName){
 
-  this._Name = pName;
-  this._isAlive = true;
-  this._Experience = 0;
-  this._Level = 0;
-  this._Currency = 0;
-
-      this._Abilities = [];
-      this._allAbilities = [];
-};
-
-
+  var _Name = pName;
+  var _isAlive = true;
+  var _Experience = 0;
+  var _Level = 0;
+  var _Currency = 0;
+  var _Abilities = [];
+  var _allAbilities = [];
+}
 //Methoden:
 
-this.updateLevel = function(){
+class_player.prototype = {
+
+  create : function()
+  {
+
+  },
+
+  update : function(pExpUpdate,pCurrencyUpdate){
+    this._Experience += pExpUpdate;
+    this._Currency += pCurrencyUpdate;
+    updateLevel();
+  },
+
+  updateLevel : function(){
   if(this.Experience >= this._Level*100){
-    (this._Level*100)-this.Experience;
-    this._Level += 1;
-  }
-};
+      (this._Level*100)-this.Experience;
+      this._Level += 1;
+    }
+  },
 
-this.update = function(pExpUpdate,pCurrencyUpdate){
-  this._Experience += pExpUpdate;
-  this._Currency += pCurrencyUpdate;
-  updateLevel();
-};
-
-this.getCurrency = function(){
+getCurrency : function(){
   return this._Currency;
-};
+},
 
-this.reduceCurrency = function(pPrice){
+reduceCurrency : function(pPrice){
   this._Currency -= pPrice;
-};
+},
 
-this.dying = function(){
+dying : function(){
   this._isAlive = false;
-};
+},
 
-this.revive = function(){
+revive : function(){
   this._isAlive = true;
-};
+},
 
 
 //Abilities
 
-    this.chooseAbility = function(pAbilityNumber, pNewAbility){
+    chooseAbility : function(pAbilityNumber, pNewAbility){
         this._Abilities[pAbilityNumber] = pNewAbility;
-    };
+    },
 
-    this.useAbility = function (pAbilityNumber) {
+    useAbility : function (pAbilityNumber) {
       this.Abilities[pAbilityNumber].use();
-    };
+    }
+};
