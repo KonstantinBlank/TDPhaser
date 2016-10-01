@@ -168,6 +168,11 @@ update : function (){
     _enemyclass.checkPath(enemy); //IMPLEMENTIEREN!
 
   });//forEach
+  this._TowerListe.forEach(function(pTower)
+  {
+    pTower.searchEnemy();
+  });//forEach
+
   this.game.physics.arcade.overlap(this._shots,this.enemies , this.shotHit, null, this);
 
 },
