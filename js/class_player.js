@@ -6,13 +6,13 @@
 
 function class_player(game, pName){
 
-  var _Name = pName;
-  var _isAlive = true;
-  var _Experience = 0;
-  var _Level = 0;
-  var _Currency = 30000000;
-  var _Abilities = [];
-  var _allAbilities = [];
+  this._Name = pName;
+  this._isAlive = true;
+  this._Experience = 0;
+  this._Level = 0;
+  this._Currency = 30000000;
+  this._Abilities = [];
+  this._allAbilities = [];
 }
 //Methoden:
 

@@ -7,7 +7,7 @@ var thegame = function(game){
   var map;
   var layer;
 //  var _ListOfTurrets = new List();
-  this._Player = new class_player(this, "KKJLD");
+  this._Player = new class_player(this, "JP-Player");
   this._TowerListe = [];
   var _nicht_bebaubar;
   var cursors;
