@@ -71,6 +71,7 @@ thegame.prototype = {
       this.game.physics.enable(enemies, Phaser.Physics.ARCADE);
 
       enemies.add(testenemy);
+
 },
 
 
