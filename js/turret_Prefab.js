@@ -1,11 +1,13 @@
-function turret_Prefab (game,  pXCoordinate, pYCoordinate, pKey)
+turret_Prefab = function  (game,  pXCoordinate, pYCoordinate, pKey)
 {
-    // Phaser.Sprite.call(this, game, pXCoordinate, pYCoordinate, pKey);
+     Phaser.Sprite.call(this, game, pXCoordinate, pYCoordinate, pKey, 0);
      this.game = game;
      this._Name = "Standardturm";
-     this._Damage = 0;
+
+     this._Damage = 10;
      this._AttackSpeed = 1 * 1000;
      this._Range = 20; // als Radius
+
 
      this._nextFire = 0;
 
@@ -18,6 +20,7 @@ function turret_Prefab (game,  pXCoordinate, pYCoordinate, pKey)
      this._isFireTower = false;
      this._isPoisonTower = false;
 
+     this.game.add.existing(this);
 }
 
 turret_Prefab.prototype = Object.create(Phaser.Sprite.prototype);
@@ -25,8 +28,16 @@ turret_Prefab.prototype.constructor = turret_Prefab;
 
 turret_Prefab.prototype.create = function()
     {
-
+      this._Circle = drawEllipse(this.x, this.y, _Range, _Range);
+      this._Circle.enableBody = true;
+      this._Circle.physicsBodyType = Phaser.Physics.ARCADE;
     };
+
+turret_Prefab.prototype.searchEnemy = function(pEnemy)
+{
+  this.game.physics.arcade.overlap(this._Circle, pEnemy, this.attackEnemy,null, this);
+};
+
 
     turret_Prefab.prototype.attackEnemy = function(pEnemy, pShots)
     {

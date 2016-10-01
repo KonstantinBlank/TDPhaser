@@ -30,6 +30,7 @@ thegame.prototype = {
   create : function(){
         this._shots = this.game.add.group();
         this._shots.enableBody = true;
+
         this._shots.physicsBodyType = Phaser.Physics.ARCADE;
 
     //  Because we're loading CSV map data we have to specify the tile size here or we can't render it
@@ -70,7 +71,7 @@ thegame.prototype = {
       this.game.physics.enable(testenemy, Phaser.Physics.ARCADE);
       this.game.physics.enable(enemies, Phaser.Physics.ARCADE);
 
-      enemies.add(testenemy);
+      enemies.add(testenemy); !!!!
 
 },
 
@@ -85,27 +86,30 @@ click : function(){
       if(this.map.getTile(x,y,layer).index != 967 && this.map.getTile(x,y,layer).index != 990 && this.map.getTile(x,y,layer).index != 989
           && this.map.getTile(x,y,layer).index != 2944 && this.map.getTile(x,y,layer).index != 68)
       {
+
+
         if (this._TowerListe[index] == undefined)
         {
-          var newTower = new turret_Prefab(this.game,x*32,y*32,"mage");
-          this._TowerListe[index] = newTower;
+          var newTower = new turret_Prefab(this.game,x*32,y*32,"saggitaurus");
+          this._TowerListe[index] = newTower;i
         }
 
         //this.game.add.sprite(this.game.world.centerX,this.game.world.height-200,'playerRocket');
         else if (this._TowerListe[index] != undefined) {
           this.showButtons = true;
-          this.text1 = this.game.add.text(1*32,17*32,'Damage:'+this._TowerListe[index].getDamage,{font: '25px Roman',fill: 'ffffff'});
-          this.text2 = this.game.add.text(7*32,17*32,'Speed:'+this._TowerListe[index].getAttackSpeed,{font: '25px Roman',fill: 'ffffff'});
-          this.text3 = this.game.add.text(13*32,17*32,'Range:'+this._TowerListe[index].getRange,{font: '25px Roman',fill: 'ffffff'});
-          this.button1 =  this.game.add.sprite(x*32,y*32,'button');
-          this.button2 =  this.game.add.sprite(x*32,y*32,'button');
-          this.button3 =  this.game.add.sprite(x*32,y*32,'button');
+          this.text1 = this.game.add.text(2*32,17*32,'Damage:'+this._TowerListe[index].getDamage(),{font: '25px Roman',fill: '#FFFFFF'});
+          this.text2 = this.game.add.text(8*32,17*32,'Speed:'+this._TowerListe[index].getAttackSpeed(),{font: '25px Roman',fill: '#FFFFFF'});
+          this.text3 = this.game.add.text(14*32,17*32,'Range:'+this._TowerListe[index].getRange(),{font: '25px Roman',fill: '#FFFFFF'});
+          this.button1 =  this.game.add.sprite(6*32,17*32,'button');
+          this.button2 =  this.game.add.sprite(12*32,17*32,'button');
+          this.button3 =  this.game.add.sprite(18*32,17*32,'button');
         }
         else {
           //this._nicht_bebaubar = this.game.add.text((this.game.world.width)-650,this.game.world.centerY,'Kann dort nicht gebaut werden!',{font : '25px Roman', fill: '#272421'});
         //this.game.time.events.add(2000, function() {    this.game.add.tween(Kann dort nicht gebaut werden!).to({y: 0}, 1500, Phaser.Easing.Linear.None, true);    this.game.add.tween(Kann dort nicht gebaut werden!).to({alpha: 0}, 1500, Phaser.Easing.Linear.None, true);}, this);
 
         }
+
       }
       else if (this.map.getTile(x,y,layer).index == 68 && this.showButtons)
       {
@@ -150,18 +154,29 @@ updateMarker : function () {
 },
 
 
+
 update : function (){
   //this.game.physics.arcade.overlap(this._shots, , bulletHitPlayer, null, this);
+
   console.log(testenemy.position.x);
   //enemy1 = enemies.create(144,16,'enemyeye')
   //enemy1.enablebodie = true;
   //enemy1.anchor.setTo(0.5, 0.5);
   //this.game.physics.enable(enemy1, Phaser.Physics.ARCADE);
   enemies.forEach(function(enemy) {
-    this._enemyclass.checkPath(enemy); //IMPLEMENTIEREN!
-  });
+
+    _enemyclass.checkPath(enemy); //IMPLEMENTIEREN!
+
+  });//forEach
+  this.game.physics.arcade.overlap(this._shots,this.enemies , this.shotHit, null, this);
+
 },
 
+ shotHit : function(pShot, pEnemy)
+ {
+    pShot.kill();
+    pEnemy.dealDmg();
+ },
 
 
 
