@@ -43,6 +43,7 @@ var thegame = function(game){
 
         //Worldbounds
         player.body.collideWorldBounds = true;
+        
 
     },
 

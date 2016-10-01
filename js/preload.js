@@ -61,8 +61,7 @@ var preload = function(game){
 
         //ButtonClick Sound
         this.game.load.audio('sound_buttonclick', ["assets/sounds//buttonsound.mp3","assets/sounds/buttonsound.ogg"]);
-      /*  var enemy = new enemy (0,0,0);
-        enemy.speed = 1; */
+      
 
 
     },

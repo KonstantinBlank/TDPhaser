@@ -9,4 +9,17 @@ enemyclass = function (_speed, _hp, _dmg)
     speed = newSpeed;
   }
 
+  this.getDmg = function()
+  {
+    return dmg;
+  }
+
+  this.dealDmg = function (damage)
+  {
+    hp = hp - damage;
+    if(hp <= 0)
+    {
+      destroy();
+    }
+  }
 }
