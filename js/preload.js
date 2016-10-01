@@ -13,7 +13,7 @@ preload.prototype = {
          this.game.load.image('tiles', 'assets/tiles/mainmap.png');
 
         //Tower
-        this.game.load.image("dragon","assets/tower/mage.png");
+        this.game.load.image("saggitaurus","assets/tower/saggitaurus.png");
 
         //Loadingbar
         var loadingBar = this.add.sprite(this.world.centerX,this.world.centerY,"loading");
