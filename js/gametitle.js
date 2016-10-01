@@ -15,7 +15,7 @@ gametitle.prototype = {
 
         //GameTitleText
         var style = { font: "80px Roboto", fill: "#FFFFFF", align: "center", stroke:"black",strokeThickness: 5};
-        var gameTitleText = this.game.add.text(this.world.centerX, 60, 'Your Game Skeleton',style);
+        var gameTitleText = this.game.add.text(this.world.centerX, 60, 'Tower Defence',style);
         gameTitleText.anchor.set(0.5);
         gameTitleText.alpha = 0.1;
 
