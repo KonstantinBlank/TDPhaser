@@ -102,6 +102,7 @@ click : function(){
         {
           var newTower = new turret_Prefab(this.game,x*32,y*32,"saggitaurus");
           this._TowerListe[index] = newTower;
+          this.killLeiste();
         }
 
         //this.game.add.sprite(this.game.world.centerX,this.game.world.height-200,'playerRocket');
@@ -120,17 +121,17 @@ click : function(){
       {
         switch (index) {
           case "6-17":
-              this.upgrade(this._TowerListe[this.selectedTower],1);
+              this.upgrade(this._TowerListe[this.selectedTower],this._Player,1);
               this.showButtons = false;
               this.killLeiste();
             break;
             case "12-17":
-                this.upgrade(this._TowerListe[this.selectedTower],2);
+                this.upgrade(this._TowerListe[this.selectedTower],this._Player,2);
                 this.showButtons = false;
                 this.killLeiste();
               break;
               case "18-17":
-                  this.upgrade(this._TowerListe[this.selectedTower],3);
+                  this.upgrade(this._TowerListe[this.selectedTower],this._Player,3);
                   this.showButtons = false;
                   this.killLeiste();
                 break;
@@ -163,7 +164,7 @@ updateMarker : function () {
 update : function (){
   //this.game.physics.arcade.overlap(this._shots, , bulletHitPlayer, null, this);
 
-  console.log(this.testenemy.position.x);
+  //console.log(this.testenemy.position.x);
   //enemy1 = enemies.create(144,16,'enemyeye')
   //enemy1.enablebodie = true;
   //enemy1.anchor.setTo(0.5, 0.5);
@@ -192,31 +193,31 @@ update : function (){
 
 
 
-   upgrade : function(pTurret, pStat)
+   upgrade : function(pTurret, pPlayer, pStat)
    {
      switch(pStat)
      {
       case 1://Schaden erhöhen
-         if(pTurret.get_DamagePrice() <= this._Player.getCurrency())
+         if(pTurret.get_DamagePrice() <= pPlayer.getCurrency())
          {
            pTurret.upgrade(pStat);
-           this._Player.reduceCurrency(pTurret.get_DamagePrice());
+           pPlayer.reduceCurrency(pTurret.get_DamagePrice());
          }
         break;
 
       case 2://Speed erhöhen
-      if(pTurret.get_SpeedPrice() <= this._Player.getCurrency())
+      if(pTurret.get_SpeedPrice() <= pPlayer.getCurrency())
       {
         pTurret.upgrade(pStat);
-        this._Player.reduceCurrency(pTurret.get_SpeedPrice());
+        pPlayer.reduceCurrency(pTurret.get_SpeedPrice());
       }
         break;
 
       case 3://Range erhöhen
-      if(pTurret.get_RangePrice() <= this._Player.getCurrency())
+      if(pTurret.get_RangePrice() <= pPlayer.getCurrency())
       {
         pTurret.upgrade(pStat);
-        this._Player.reduceCurrency(pTurret.get_RangePrice());
+        pPlayer.reduceCurrency(pTurret.get_RangePrice());
       }
         break;
 
