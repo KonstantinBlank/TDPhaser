@@ -32,6 +32,14 @@ this.update = function(pExpUpdate,pCurrencyUpdate){
   updateLevel();
 };
 
+this.getCurrency = function(){
+  return this._Currency;
+};
+
+this.reduceCurrency = function(pPrice){
+  this._Currency -= pPrice;
+};
+
 this.dying = function(){
   this._isAlive = false;
 };

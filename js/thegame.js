@@ -37,6 +37,7 @@ thegame.prototype = {
 update: function () {
 
   this.arrowscroll();
+  
 },
 
 arrowscroll : function(){
