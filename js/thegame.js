@@ -23,7 +23,7 @@ thegame.prototype = {
   create : function(){
         this._shots = game.add.group();
         this._shots.enableBody = true;
-        shots.physicsBodyType = Phaser.Pysics.ARCADE;
+        this._shots.physicsBodyType = Phaser.Pysics.ARCADE;
 
     //  Because we're loading CSV map data we have to specify the tile size here or we can't render it
        this.map = this.game.add.tilemap('map', 32, 32);
@@ -104,8 +104,8 @@ updateMarker : function () {
 },
 
 
-update : function (){
-  this.game.physics.arcade.overlap(this._shots, , bulletHitPlayer, null, this);
+update : function ()
+{
   console.log(testenemy.position.x);
   enemy1 = enemies.create(32,32,'playerRocket')
   enemy1.enablebodie = true;
@@ -114,9 +114,16 @@ update : function (){
   this.game.physics.arcade.moveToXY(enemy1, 900, 900, 3, 10000);
   enemies.forEach(function(enemy) {
     _enemyclass.checkPath(enemy); //IMPLEMENTIEREN!
-  });
+
+  });//forEach
+  this.game.physics.arcade.overlap(this._shots,this.enemies , this.shotHit, null, this);
 },
 
+ shotHit : function(pShot, pEnemy)
+ {
+    pShot.kill();
+    pEnemy.dealDmg();
+ },
 
 
 

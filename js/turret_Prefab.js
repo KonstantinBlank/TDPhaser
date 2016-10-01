@@ -3,9 +3,10 @@ function turret_Prefab (game,  pXCoordinate, pYCoordinate, pKey)
      Phaser.Sprite.call(this, game, pXCoordinate, pYCoordinate, pKey);
      this.game = game;
      this._Name = "Standardturm";
-     this._Damage = pDamage;
+     this._Damage = 10;
      this._AttackSpeed = pAttackspeed * 1000;
-     this._Range = pRange; // als Radius
+     this._Range = 20; // als Radius
+
 
      this._nextFire = 0;
 
@@ -25,8 +26,16 @@ turret_Prefab.prototype.constructor = turret_Prefab;
 
 turret_Prefab.prototype.create = function()
     {
-
+      this._Circle = drawEllipse(this.x, this.y, _Range, _Range);
+      this._Circle.enableBody = true;
+      this._Circle.physicsBodyType = Phaser.Physics.ARCADE;
     };
+
+turret_Prefab.prototype.searchEnemy(pEnemy)
+{
+  this.game.physics.arcade.overlap(this._Circle, pEnemy, this.attackEnemy,null, this);
+};
+
 
     turret_Prefab.prototype.attackEnemy = function(pEnemy, pShots)
     {
