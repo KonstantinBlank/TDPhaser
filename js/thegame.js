@@ -71,7 +71,7 @@ thegame.prototype = {
       this.game.physics.enable(testenemy, Phaser.Physics.ARCADE);
       this.game.physics.enable(enemies, Phaser.Physics.ARCADE);
 
-      enemies.add(testenemy); !!!!
+      enemies.add(testenemy);
 
 },
 
@@ -158,7 +158,7 @@ updateMarker : function () {
 update : function (){
   //this.game.physics.arcade.overlap(this._shots, , bulletHitPlayer, null, this);
 
-  console.log(testenemy.position.x);
+  console.log(testenemy.position.x + "x ; y " + testenemy.position.y);
   //enemy1 = enemies.create(144,16,'enemyeye')
   //enemy1.enablebodie = true;
   //enemy1.anchor.setTo(0.5, 0.5);
