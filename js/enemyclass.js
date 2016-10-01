@@ -78,7 +78,7 @@ enemyclass = function ()
        }
        if (this._waypoint == 5 && enemy.position.x >= 144)
        {
-         this._waypoint = this._waypoint - 1;
+         this._waypoint = 4;
        }
        console.log(this._waypoint);
 
