@@ -1,0 +1,38 @@
+﻿Merge remote-tracking branch 'origin/master'
+
+# Conflicts:
+#	js/preload.js
+#	js/thegame.js
+#
+# It looks like you may be committing a merge.
+# If this is not correct, please remove the file
+#	.git/MERGE_HEAD
+# and try again.
+
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch master
+# Your branch and 'origin/master' have diverged,
+# and have 3 and 9 different commits each, respectively.
+#   (use "git pull" to merge the remote branch into yours)
+#
+# All conflicts fixed but you are still merging.
+#
+# Changes to be committed:
+#	new file:   assets/enemies/EnemyEye.png
+#	new file:   assets/enemies/boneDragon.png
+#	new file:   assets/enemies/ghosts.png
+#	modified:   assets/tower/dragon.png
+#	new file:   assets/tower/elf.png
+#	new file:   assets/tower/saggitaurus.png
+#	modified:   js/boot.js
+#	modified:   js/class_player.js
+#	deleted:    js/easystar-0.2.1.min.js
+#	modified:   js/enemyclass.js
+#	deleted:    js/main.js
+#	modified:   js/preload.js
+#	modified:   js/thegame.js
+#	modified:   js/turret_Prefab.js
+#
+

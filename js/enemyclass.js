@@ -2,7 +2,7 @@ enemyclass = function ()
 {
 
 var _path = null;
-var _waypoint = 0;
+  this._waypoint = 0;
   this._speed = 0;
   this._hp = 0;
   this._dmg = 0;
@@ -22,7 +22,7 @@ var _waypoint = 0;
       _hp = pHp;
       _dmg  = pDmg;
       //_sprite = sprite;
-      _path = [[144,16],[144,144],[880,144],[880,368],[144,368],[144,400],[880,400],[880,496]];
+      _path = [/*[144,16],*/[144,144],[880,144],[880,368],[144,368],[144,400],[880,400],[880,496]];
     },
 
     update : function(){
@@ -71,10 +71,11 @@ var _waypoint = 0;
          {
            if(enemy.position.x >= _path[i,1])
            {
-             _waypoint = i + 1;
+             this._waypoint = i + 1;
            }
          }
        }
+       console.log(this._waypoint);
        /*if(enemy.body.velocity.x > 0 && enemy.position.x >= _path[_waypoint,1])
        {
          enemy.position.x = _path[_waypoint,1];
@@ -111,15 +112,15 @@ var _waypoint = 0;
        {
          if (this._waypoint % 4 == 0)
          {
-           enemy.body.velocity.x = -10;
+           enemy.body.velocity.x = -40;
            enemy.body.velocity.y = 0;
          }
-          enemy.body.velocity.x = 10;
+          enemy.body.velocity.x = 40;
           enemy.body.velocity.y = 0;
        }
        else {
          enemy.body.velocity.x = 0;
-         enemy.body.velocity.y = 10;
+         enemy.body.velocity.y = 40;
        }
     }
 };
