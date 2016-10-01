@@ -8,6 +8,7 @@ var thegame = function(game){
 //  var _ListOfTurrets = new List();
   var _Player = new class_player(this, "KKJLD");
   this._TowerListe = [];
+  var _nicht_bebaubar;
   var cursors;
   var marker;
 };
@@ -56,6 +57,8 @@ update: function () {
 
 setzeTower : function(){
 
+
+
       var x = layer.getTileX(this.game.input.activePointer.worldX);
       var y = layer.getTileY(this.game.input.activePointer.worldY);
       var index = x+"-"+y;
@@ -64,6 +67,10 @@ setzeTower : function(){
         console.log("Tower gebaut");
         var newTower = this.game.add.sprite(x*32,y*32,"mage");
         this._TowerListe[index] = newTower;
+      }
+      else {
+        this._nicht_bebaubar = this.game.add.text((this.game.world.width)-650,this.game.world.centerY,'Kann dort nicht gebaut werden!',{font : '25px Roman', fill: '#272421'});
+        this._nicht_bebaubar = this.game.add.text((this.game.world.width)-650,this.game.world.centerY,'',{font : '25px Roman', fill: '#272421'});
       }
 },
 
