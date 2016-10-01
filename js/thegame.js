@@ -15,6 +15,9 @@ var thegame = function(game){
   var button1;
   var button2;
   var button3;
+  var text1;
+  var text2;
+  var text3;
   var showButtons = false;
 
 };
@@ -78,9 +81,9 @@ click : function(){
         //this.game.add.sprite(this.game.world.centerX,this.game.world.height-200,'playerRocket');
         else if (this._TowerListe[index] != undefined) {
           this.showButtons = true;
-          this.game.add.text(1*32,17*32,'Damage:'+this._TowerListe[index].getDamage,{font: '25px Roman',fill: 'ffffff'});
-          this.game.add.text(7*32,17*32,'Speed:'+this._TowerListe[index].getAttackSpeed,{font: '25px Roman',fill: 'ffffff'});
-          this.game.add.text(13*32,17*32,'Range:'+this._TowerListe[index].getRange,{font: '25px Roman',fill: 'ffffff'});
+          this.text1 = this.game.add.text(1*32,17*32,'Damage:'+this._TowerListe[index].getDamage,{font: '25px Roman',fill: 'ffffff'});
+          this.text2 = this.game.add.text(7*32,17*32,'Speed:'+this._TowerListe[index].getAttackSpeed,{font: '25px Roman',fill: 'ffffff'});
+          this.text3 = this.game.add.text(13*32,17*32,'Range:'+this._TowerListe[index].getRange,{font: '25px Roman',fill: 'ffffff'});
           this.button1 =  this.game.add.sprite(x*32,y*32,'button');
           this.button2 =  this.game.add.sprite(x*32,y*32,'button');
           this.button3 =  this.game.add.sprite(x*32,y*32,'button');
@@ -97,14 +100,17 @@ click : function(){
           case 6-17:
               this.upgrade(this._TowerListe[index],1);
               this.button1.kill;
+              this.text1.kill
             break;
             case 12-17:
                 this.upgrade(this._TowerListe[index],2);
                 this.button2.kill;
+                this.text2.kill
               break;
               case 18-17:
                   this.upgrade(this._TowerListe[index],3);
                   this.button3.kill;
+                  this.text3.kill
                 break;
           default:
         }
