@@ -5,7 +5,7 @@
 var preload = function(game){
 };
 
-/*preload.prototype = {
+preload.prototype = {
     preload: function(){
 
         //Loadingbar
@@ -61,7 +61,7 @@ var preload = function(game){
 
         //ButtonClick Sound
         this.game.load.audio('sound_buttonclick', ["assets/sounds//buttonsound.mp3","assets/sounds/buttonsound.ogg"]);
-      
+
 
 
     },
@@ -69,4 +69,3 @@ var preload = function(game){
         this.game.state.start("GameTitle");
     }
 };
-*/

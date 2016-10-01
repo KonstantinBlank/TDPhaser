@@ -4,7 +4,7 @@
 var boot = function(game){
 };
 
-/*boot.prototype = {
+boot.prototype = {
     preload: function(){
         this.game.load.image("loading","assets/background/loading.png");
 
@@ -19,4 +19,3 @@ var boot = function(game){
         this.game.state.start("Preload");
     }
 };
-*/

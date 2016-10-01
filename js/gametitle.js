@@ -1,7 +1,7 @@
 /**
  * Created by Schlag on 01.07.2016
  */
-/*var gametitle = function(game){
+var gametitle = function(game){
   backgroundMusicPlaying = true;
 };
 
@@ -60,4 +60,3 @@ gametitle.prototype = {
     },
 
 };
-*/
