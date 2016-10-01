@@ -3,14 +3,65 @@
  */
 var thegame = function(game){
 
-
+  var map;
+  var layer;
+  var cursors;
 
 };
 
-/*thegame.prototype = {
 
 
-    create : function(){
+thegame.prototype = {
+
+  create : function(){
+
+    //  Because we're loading CSV map data we have to specify the tile size here or we can't render it
+       map = this.game.add.tilemap('map', 16, 16);
+
+       //  Now add in the tileset
+       map.addTilesetImage('tiles');
+
+       //  Create our layer
+       layer = map.createLayer(0);
+
+       //  Resize the world
+       layer.resizeWorld();
+
+       //  Allow cursors to scroll around the map
+       cursors = this.game.input.keyboard.createCursorKeys();
+
+       var help = this.game.add.text(16, 16, 'Arrows to scroll', { font: '14px Arial', fill: '#ffffff' });
+       help.fixedToCamera = true;
+},
+
+update: function () {
+
+  this.arrowscroll();
+},
+
+arrowscroll : function(){
+        if (cursors.left.isDown)
+         {
+          this.game.camera.x -= 4;
+         }
+         else if (cursors.right.isDown)
+         {
+         this.game.camera.x += 4;
+         }
+         if (cursors.up.isDown)
+         {
+         this.game.camera.y -= 4;
+         }
+         else if (cursors.down.isDown)
+         {
+         this.game.camera.y += 4;
+         }
+   }
+};
+
+
+
+  /*  create : function(){
 
         //Steuerung und Physik reinladen
         cursors = this.game.input.keyboard.createCursorKeys();
@@ -94,6 +145,4 @@ var thegame = function(game){
         emitter1.start(true, playerParticleLifetime,null,playerParticleAmount);
 
 },
-
-
-};*/
+/ */
