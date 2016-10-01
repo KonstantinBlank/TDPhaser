@@ -8,9 +8,11 @@ var preload = function(game){
 preload.prototype = {
     preload: function(){
 
-      this.game.load.tilemap('map', 'assets/tiles/testmap.csv', null, Phaser.Tilemap.CSV);
-         this.game.load.image('tiles', 'assets/tiles/testmap.png');
+      this.game.load.tilemap('map', 'assets/tiles/mainmap.csv', null, Phaser.Tilemap.CSV);
+         this.game.load.image('tiles', 'assets/tiles/mainmap.png');
 
+        //Tower
+        this.game.load.image("mage","assets/tower/mage.png");
 
         //Loadingbar
         var loadingBar = this.add.sprite(this.world.centerX,this.world.centerY,"loading");

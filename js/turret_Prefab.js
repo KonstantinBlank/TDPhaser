@@ -8,7 +8,6 @@ function turret_Prefab (game, pDamage, pAttackspeed, pRange)
 
      this._nextFire = 0;
 
-
      this._DamagePrice = 10;
      this._SpeedPrice = 10;
      this._RangePrice = 10;
@@ -22,19 +21,26 @@ function turret_Prefab (game, pDamage, pAttackspeed, pRange)
 
 turret_Prefab.prototype = {
 
-    findEnemy : function()
+    create : function()
     {
-        //findet enemy
-        //ruft attackEnemy auf und übergibt pEnemy
+      this._shots = game.add.group();
+      this._shots.enableBody = true;
+      shots.physicsBodyType = Phaser.Pysics.ARCADE;
     },
 
     attackEnemy : function(pEnemy)
     {
+        shot = shots.create()
         if(this.game.time.time > this._nextFire && pEnemy != null)
         {
           pEnemy.dealDmg(this._Damage);
           this._nextFire = this.game.time.time + this._AttackSpeed;
           console.log("gefeurt" + this.game.time.time);
+
+          var enemyX = pEnemy.getXCoordinate();
+          var enemyY = pEnemy.getYCoordinate();
+
+          this.game.physics.ARCADE.moveToXY(shot, enemyX, enemyY, 100, this._nextFire);
         }
 
     },
@@ -96,4 +102,5 @@ turret_Prefab.prototype = {
     {
       return this._Range;
     }
+
 };

@@ -5,7 +5,6 @@ var thegame = function(game){
 
    this.map;
    this.layer;
-//  var _ListOfTurrets = new List();
   this._turret = new turret_Prefab(game, 10, 3, 20);
 
   this._Player = new class_player(this, "KKJLD");
@@ -46,6 +45,25 @@ thegame.prototype = {
 
        this.game.input.onDown.add(this.getTileProperties, this);
 
+       this.game.physics.startSystem(Phaser.Physics.ARCADE);
+
+
+
+},
+//player = this.game.add.sprite(this.game.world.centerX,this.game.world.height-200,'playerRocket');
+
+update: function () {
+
+  this.arrowscroll();
+
+  if (this.game.input.activePointer.leftButton.isDown)
+  {
+
+    var x = layer.getTileX(this.game.input.activePointer.worldX)*32;
+    var y = layer.getTileY(this.game.input.activePointer.worldY)*32;
+    var newTower = this.game.add.sprite(x,y,"mage");
+    console.log("Klappt",x,y);
+  }
 },
 
 getTileProperties : function () {
@@ -66,12 +84,8 @@ updateMarker : function () {
 
 },
 
-update: function () {
 
-  this.arrowscroll();
-  this._turret.attackEnemy();
 
-},
 
 arrowscroll : function(){
         if (cursors.left.isDown)

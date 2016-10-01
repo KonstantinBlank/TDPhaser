@@ -1,10 +1,10 @@
 enemyclass = function (pSpeed, pHp, pDmg)
 {
-  var _speed = 0;
-  var _hp = 0;
-  var _dmg = 0;
-  var x = 0;
-  var y = 0;
+  this._speed = 0;
+  this._hp = 0;
+  this._dmg = 0;
+  this.x = 0;
+  this.y = 0;
 }
 
   enemyclass.prototype = {
@@ -27,6 +27,16 @@ enemyclass = function (pSpeed, pHp, pDmg)
     {
       return _dmg;
     },
+
+    getXCoordinate : function()
+    {
+      return this.x;
+    }
+
+    getYCoordinate : function()
+    {
+      return this.y;
+    }
 
     dealDmg : function (pDamage)
     {
