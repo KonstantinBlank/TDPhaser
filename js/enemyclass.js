@@ -1,23 +1,23 @@
-enemyclass = function (_speed, _hp, _dmg)
+enemyclass = function (pSpeed, pHp, pDmg)
 {
-  var speed = _speed;
-  var hp = _hp;
-  var dmg  = _dmg;
+  var _speed = pSpeed;
+  var _hp = pHp;
+  var _dmg  = pDmg;
 
   this.setSpeed = function(newSpeed)
   {
-    speed = newSpeed;
+    _speed = newSpeed;
   }
 
   this.getDmg = function()
   {
-    return dmg;
+    return _dmg;
   }
 
-  this.dealDmg = function (damage)
+  this.dealDmg = function (pDamage)
   {
-    hp = hp - damage;
-    if(hp <= 0)
+    _hp = _hp - pDamage;
+    if(_hp <= 0)
     {
       destroy();
     }
