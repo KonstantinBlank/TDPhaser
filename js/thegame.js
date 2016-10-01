@@ -55,7 +55,7 @@ thegame.prototype = {
        this.game.input.addMoveCallback(this.updateMarker, this);
 
        this.game.input.onDown.add(this.getTileProperties, this);
-       this.game.input.onDown.add(this.ckick, this);
+       this.game.input.onDown.add(this.click, this);
 
        this.game.physics.startSystem(Phaser.Physics.ARCADE);
 
