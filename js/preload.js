@@ -12,9 +12,10 @@ preload.prototype = {
         this.game.load.tilemap('map', 'assets/tiles/mainmap.csv', null, Phaser.Tilemap.CSV);
         this.game.load.image('tiles', 'assets/tiles/mainmap.png');
         this.game.load.image('button', 'assets/button/button.png');
+        this.game.load.image('shot', 'assets/shots/arrow.png');
 
         //Tower
-        this.game.load.image("dragon","assets/tower/mage.png");
+        this.game.load.image("saggitaurus","assets/tower/saggitaurus.png");
 
         //Loadingbar
         var loadingBar = this.add.sprite(this.world.centerX,this.world.centerY,"loading");
