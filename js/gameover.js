@@ -1,8 +1,7 @@
 /**
  * Created by Schlag on 01.07.2016
  */
-var gameover = function(game){
-};
+/*};
 
 gameover.prototype = {
     create: function(){
@@ -59,3 +58,4 @@ gameover.prototype = {
 
     }
 };
+*/

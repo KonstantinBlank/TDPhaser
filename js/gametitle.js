@@ -1,7 +1,7 @@
 /**
  * Created by Schlag on 01.07.2016
  */
-var gametitle = function(game){
+/*var gametitle = function(game){
   backgroundMusicPlaying = true;
 };
 
@@ -18,7 +18,7 @@ gametitle.prototype = {
         var gameTitleText = this.game.add.text(this.world.centerX, 60, 'Your Game Skeleton',style);
         gameTitleText.anchor.set(0.5);
         gameTitleText.alpha = 0.1;
-        
+
         //Alpha Wert verändern
         this.game.add.tween(gameTitleText).to( { alpha: 1 }, 1000, "Linear", true);
 
@@ -60,3 +60,4 @@ gametitle.prototype = {
     },
 
 };
+*/

@@ -2,12 +2,12 @@
  * Created by Schlag on 01.07.2016
  */
 var thegame = function(game){
-    rotateDirection = 1;
-    isShielded = false;
-    isBoosted = false;
+
+
+
 };
 
-thegame.prototype = {
+/*thegame.prototype = {
 
 
     create : function(){
@@ -95,4 +95,4 @@ thegame.prototype = {
 },
 
 
-};
+};*/

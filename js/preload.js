@@ -5,7 +5,7 @@
 var preload = function(game){
 };
 
-preload.prototype = {
+/*preload.prototype = {
     preload: function(){
 
         //Loadingbar
@@ -58,7 +58,7 @@ preload.prototype = {
         //GameTitle / GameOver Background Sound
         this.game.load.audio('sound_bgloop', ['assets/sounds/loop_menu.mp3','assets/sounds/loop_menu.ogg']);
         this.game.load.audio('sound_bgloop2', ['assets/sounds/loop_level1.mp3','assets/sounds/loop_level1.ogg']);
-        
+
         //ButtonClick Sound
         this.game.load.audio('sound_buttonclick', ["assets/sounds//buttonsound.mp3","assets/sounds/buttonsound.ogg"]);
 
@@ -68,3 +68,4 @@ preload.prototype = {
         this.game.state.start("GameTitle");
     }
 };
+*/

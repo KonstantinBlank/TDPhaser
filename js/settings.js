@@ -1,7 +1,7 @@
 /**
  * Created by Schlag on 01.07.2016
  */
-
+/*
 //RotationsGeschwindigkeit von Player
 var rotationSpeed = 10;
 
@@ -13,3 +13,4 @@ var playerParticleAmount = 1;
 
 //"Dash" Speed
 var playerDashSpeed = -300;
+*/
