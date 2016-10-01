@@ -6,7 +6,7 @@ turret_Prefab = function  (game,  pXCoordinate, pYCoordinate, pKey, pShots)
      this._shots = pShots;
      this._Damage = 10;
      this._AttackSpeed = 1 * 1000;
-     this._Range = 20; // als Radius
+     this._Range = 2000; // als Radius
 
 
      this._nextFire = 0;
@@ -22,7 +22,9 @@ turret_Prefab = function  (game,  pXCoordinate, pYCoordinate, pKey, pShots)
 
      this.game.add.existing(this);
 
+     this.game.physics.enable(this, Phaser.Physics.ARCADE);
      this.enableBody = true;
+
      this.physicsBodyType = Phaser.Physics.ARCADE;
      this.body.setCircle(_Range);
 }

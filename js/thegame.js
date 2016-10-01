@@ -61,17 +61,17 @@ thegame.prototype = {
 
 
 
-      _enemyclass = new enemyclass();
-      _enemyclass.create(0,0,0);
+      this._enemyclass = new enemyclass();
+      this._enemyclass.create(0,0,0);
 
-      testenemy = this.game.add.sprite(144, 16, 'enemyeye');
-      testenemy.anchor.setTo(0.5, 0.5);
-      enemies = this.game.add.group();
-      enemies.enablebodie = true;
-      this.game.physics.enable(testenemy, Phaser.Physics.ARCADE);
-      this.game.physics.enable(enemies, Phaser.Physics.ARCADE);
+      this.enemies = this.game.add.group();
+      this.enemies.enablebodie = true;
 
-      enemies.add(testenemy);
+      this.testenemy = this.enemies.create(144, 16, 'enemyeye');
+      this.testenemy.anchor.setTo(0.5, 0.5);
+      this.game.physics.enable(this.testenemy, Phaser.Physics.ARCADE);
+      this.game.physics.enable(this.enemies, Phaser.Physics.ARCADE);
+      //this.enemies.add(testenemy);
 
 },
 
@@ -91,7 +91,7 @@ click : function(){
         if (this._TowerListe[index] == undefined)
         {
           var newTower = new turret_Prefab(this.game,x*32,y*32,"saggitaurus");
-          this._TowerListe[index] = newTower;i
+          this._TowerListe[index] = newTower;
         }
 
         //this.game.add.sprite(this.game.world.centerX,this.game.world.height-200,'playerRocket');
@@ -158,19 +158,21 @@ updateMarker : function () {
 update : function (){
   //this.game.physics.arcade.overlap(this._shots, , bulletHitPlayer, null, this);
 
-  console.log(testenemy.position.x);
+  console.log(this.testenemy.position.x);
   //enemy1 = enemies.create(144,16,'enemyeye')
   //enemy1.enablebodie = true;
   //enemy1.anchor.setTo(0.5, 0.5);
   //this.game.physics.enable(enemy1, Phaser.Physics.ARCADE);
-  enemies.forEach(function(enemy) {
+  var self = this;
+  this.enemies.forEach(function(enemy) {
 
-    _enemyclass.checkPath(enemy); //IMPLEMENTIEREN!
+    self._enemyclass.checkPath(enemy); //IMPLEMENTIEREN!
 
   });//forEach
+
   this._TowerListe.forEach(function(pTower)
   {
-    pTower.searchEnemy();
+    pTower.searchEnemy(this.enemies);
   });//forEach
 
   this.game.physics.arcade.overlap(this._shots,this.enemies , this.shotHit, null, this);
