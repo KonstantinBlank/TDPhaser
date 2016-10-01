@@ -67,9 +67,14 @@ setzeTower : function(){
         this._TowerListe[index] = newTower;
       }
       else {
+<<<<<<< HEAD
         this._nicht_bebaubar = this.game.add.text((this.game.world.width)-650,this.game.world.centerY,'Kann dort nicht gebaut werden!',{font : '25px Roman', fill: '#272421'});
 
         this._nicht_bebaubar = this.game.add.text((this.game.world.width)-650,this.game.world.centerY,'',{font : '25px Roman', fill: '#272421'});
+=======
+        //this._nicht_bebaubar = this.game.add.text((this.game.world.width)-650,this.game.world.centerY,'Kann dort nicht gebaut werden!',{font : '25px Roman', fill: '#272421'});
+      //this.game.time.events.add(2000, function() {    this.game.add.tween(Kann dort nicht gebaut werden!).to({y: 0}, 1500, Phaser.Easing.Linear.None, true);    this.game.add.tween(Kann dort nicht gebaut werden!).to({alpha: 0}, 1500, Phaser.Easing.Linear.None, true);}, this);
+>>>>>>> origin/master
       }
 },
 
