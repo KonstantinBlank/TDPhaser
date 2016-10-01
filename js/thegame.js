@@ -7,6 +7,7 @@ var thegame = function(game){
   var layer;
 //  var _ListOfTurrets = new List();
   var _Player = new class_player(this, "KKJLD");
+  var _TowerListe = [];
   var cursors;
   var marker;
 
@@ -33,6 +34,8 @@ thegame.prototype = {
        //  Allow cursors to scroll around the map
        cursors = this.game.input.keyboard.createCursorKeys();
 
+       var help = this.game.add.text(32, 32, 'Arrows to scroll', { font: '14px Arial', fill: '#ffffff' });
+       help.fixedToCamera = true;
 
        //Adds 32*32 marker on curser position
        marker = this.game.add.graphics();
@@ -42,6 +45,25 @@ thegame.prototype = {
 
        this.game.input.onDown.add(this.getTileProperties, this);
 
+       this.game.physics.startSystem(Phaser.Physics.ARCADE);
+
+
+
+},
+//player = this.game.add.sprite(this.game.world.centerX,this.game.world.height-200,'playerRocket');
+
+update: function () {
+
+  this.arrowscroll();
+
+  if (this.game.input.activePointer.leftButton.isDown)
+  {
+
+    var x = layer.getTileX(this.game.input.activePointer.worldX)*32;
+    var y = layer.getTileY(this.game.input.activePointer.worldY)*32;
+    var newTower = this.game.add.sprite(x,y,"mage");
+    console.log("Klappt",x,y);
+  }
 },
 
 getTileProperties : function () {
@@ -62,11 +84,28 @@ updateMarker : function () {
 
 },
 
-update: function () {
 
 
-},
 
+
+arrowscroll : function(){
+        if (cursors.left.isDown)
+         {
+          this.game.camera.x -= 4;
+         }
+         else if (cursors.right.isDown)
+         {
+         this.game.camera.x += 4;
+         }
+         if (cursors.up.isDown)
+         {
+         this.game.camera.y -= 4;
+         }
+         else if (cursors.down.isDown)
+         {
+         this.game.camera.y += 4;
+         }
+   },
 
    upgrade : function(pTurret, pStat)
    {
