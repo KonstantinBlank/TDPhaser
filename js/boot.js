@@ -17,7 +17,7 @@ boot.prototype = {
        test.create(0,0,0);
 
         var turret = new turret_Prefab("eis", 10, 2, 20);
-        turret.teste();
+      
 
 
         console.log(test.getDmg());
