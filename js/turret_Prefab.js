@@ -17,10 +17,9 @@ function turret_Prefab (pDamage, pAttackspeed, pRange)
 
 turret_Prefab.prototype = {
 
-    findEnemy : function()
+    create : function()
     {
-        //findet enemy
-        //ruft attackEnemy auf und übergibt pEnemy
+      
     },
 
     attackEnemy : function(pEnemy)
@@ -78,4 +77,5 @@ turret_Prefab.prototype = {
         {
           return this._Name;
         }
+
 };
