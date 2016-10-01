@@ -8,8 +8,8 @@ var preload = function(game){
 preload.prototype = {
     preload: function(){
 
-      this.game.load.tilemap('map', 'assets/tiles/testmap.csv', null, Phaser.Tilemap.CSV);
-         this.game.load.image('tiles', 'assets/tiles/testmap.png');
+      this.game.load.tilemap('map', 'assets/tiles/watermap.csv', null, Phaser.Tilemap.CSV);
+         this.game.load.image('tiles', 'assets/tiles/watermap.png');
 
 
         //Loadingbar

@@ -33,8 +33,6 @@ thegame.prototype = {
        //  Allow cursors to scroll around the map
        cursors = this.game.input.keyboard.createCursorKeys();
 
-       var help = this.game.add.text(32, 32, 'Arrows to scroll', { font: '14px Arial', fill: '#ffffff' });
-       help.fixedToCamera = true;
 
        //Adds 32*32 marker on curser position
        marker = this.game.add.graphics();
@@ -66,28 +64,9 @@ updateMarker : function () {
 
 update: function () {
 
-  this.arrowscroll();
 
 },
 
-arrowscroll : function(){
-        if (cursors.left.isDown)
-         {
-          this.game.camera.x -= 4;
-         }
-         else if (cursors.right.isDown)
-         {
-         this.game.camera.x += 4;
-         }
-         if (cursors.up.isDown)
-         {
-         this.game.camera.y -= 4;
-         }
-         else if (cursors.down.isDown)
-         {
-         this.game.camera.y += 4;
-         }
-   },
 
    upgrade : function(pTurret, pStat)
    {
