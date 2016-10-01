@@ -9,6 +9,7 @@ var thegame = function(game){
   var _Player = new class_player(this, "KKJLD");
   var cursors;
   var marker;
+  var _enemyclass;
 
 };
 
@@ -44,6 +45,17 @@ thegame.prototype = {
 
        this.game.input.onDown.add(this.getTileProperties, this);
 
+      _enemyclass = new enemyclass();
+      _enemyclass.create(0,0,0);
+
+      testenemy = this.game.add.sprite(512, 320, 'playerRocket');
+      testenemy.anchor.setTo(0.5, 0.5);
+      enemies = this.game.add.group();
+      enemies.enablebodie = true;
+      this.game.physics.enable(testenemy, Phaser.Physics.ARCADE);
+      this.game.physics.enable(enemies, Phaser.Physics.ARCADE);
+
+      enemies.add(testenemy);
 },
 
 getTileProperties : function () {
@@ -68,6 +80,15 @@ update: function () {
 
   this.arrowscroll();
 
+  console.log(testenemy.position.x);
+  enemy1 = enemies.create(32,32,'playerRocket')
+  enemy1.enablebodie = true;
+  enemy1.anchor.setTo(0.5, 0.5);
+  this.game.physics.enable(enemy1, Phaser.Physics.ARCADE);
+  this.game.physics.arcade.moveToXY(enemy1, 900, 900, 3, 10000);
+  enemies.forEach(function(enemy) {
+    _enemyclass.checkPath(enemy); //IMPLEMENTIEREN!
+  });
 },
 
 arrowscroll : function(){
