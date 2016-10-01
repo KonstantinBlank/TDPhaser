@@ -8,6 +8,10 @@ var preload = function(game){
 preload.prototype = {
     preload: function(){
 
+      this.game.load.tilemap('map', 'assets/tiles/catastrophi_level2.csv', null, Phaser.Tilemap.CSV);
+         this.game.load.image('tiles', 'assets/tiles/catastrophi_tiles_16.png');
+
+
         //Loadingbar
         var loadingBar = this.add.sprite(this.world.centerX,this.world.centerY,"loading");
         loadingBar.anchor.setTo(0.5,0.5);
