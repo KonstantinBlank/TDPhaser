@@ -1,81 +1,106 @@
-function turret_Prefab (pDamage, pAttackspeed, pRange)
+function turret_Prefab (game, pDamage, pAttackspeed, pRange)
 {
-    var _Name = "Standardturm";
-    var _Damage = pDamage;
-    var _AttackSpeed = pAttackspeed;
-    var _Range = pRange; // als Radius
+     this.game = game;
+     this._Name = "Standardturm";
+     this._Damage = pDamage;
+     this._AttackSpeed = pAttackspeed * 1000;
+     this._Range = pRange; // als Radius
 
-    var _DamagePrice = 10;
-    var _SpeedPrice = 10;
-    var _RangePrice = 10;
+     this._nextFire = 0;
 
-    var _isNormalTower = true;
-    var _isIceTower = false;
-    var _isFireTower = false;
-    var _isPoisonTower = false;
+     this._DamagePrice = 10;
+     this._SpeedPrice = 10;
+     this._RangePrice = 10;
+
+     this._isNormalTower = true;
+     this._isIceTower = false;
+     this._isFireTower = false;
+     this._isPoisonTower = false;
+
 }
 
 turret_Prefab.prototype = {
 
     create : function()
     {
-      
+      this._shots = game.add.group();
+      this._shots.enableBody = true;
+      shots.physicsBodyType = Phaser.Pysics.ARCADE;
     },
 
     attackEnemy : function(pEnemy)
     {
-        if(this._isNormalTower)
+        shot = shots.create()
+        if(this.game.time.time > this._nextFire && pEnemy != null)
         {
           pEnemy.dealDmg(this._Damage);
+          this._nextFire = this.game.time.time + this._AttackSpeed;
+          console.log("gefeurt" + this.game.time.time);
+
+          var enemyX = pEnemy.getXCoordinate();
+          var enemyY = pEnemy.getYCoordinate();
+
+          this.game.physics.ARCADE.moveToXY(shot, enemyX, enemyY, 100, this._nextFire);
         }
 
     },
 
-
-    //upgrades
-        upgrade : function(pStat)
-        {
-          switch(pStat){
-            case 1:
-                this._Damage ++;
-                this._DanagePrice * 2;
-                this._SpeedPrice * 1.5;
-                this._RangePrice * 1.5;
-              break;
-            case 2:
-              this._AttackSpeed ++;
-              this._DanagePrice * 1.5;
-              this._SpeedPrice * 2;
-              this._RangePrice * 1.5;
-              break;
-            case 3:
-              this._Range ++;
-              this._DanagePrice * 1.5;
-              this._SpeedPrice * 1.5;
-              this._RangePrice * 2;
-              break;
-            default:
+    upgrade : function(pStat)
+    {
+      switch(pStat)
+      {
+        case 1:
+            this._Damage ++;
+            this._DanagePrice * 2;
+            this._SpeedPrice * 1.5;
+            this._RangePrice * 1.5;
             break;
-          }
-        },
+        case 2:
+            this._AttackSpeed -= 1000;
+            this._DanagePrice * 1.5;
+            this._SpeedPrice * 2;
+            this._RangePrice * 1.5;
+            break;
+        case 3:
+            this._Range ++;
+            this._DanagePrice * 1.5;
+            this._SpeedPrice * 1.5;
+            this._RangePrice * 2;
+            break;
+        default:
+            break;
+      }
+    },
 
-        get_DamagePrice : function()
-        {
-            return this._DamagePrice;
-        },
+    get_DamagePrice : function()
+    {
+        return this._DamagePrice;
+    },
 
-        get_SpeedPrice : function()
-        {
-            return this._SpeedPrice;
-        },
+    get_SpeedPrice : function()
+    {
+        return this._SpeedPrice;
+    },
 
-        get_RangePrice : function()
-        {
-            return this._RangePrice;
-        },
-        getName : function()
-        {
-          return this._Name;
-        }
+    get_RangePrice : function()
+    {
+        return this._RangePrice;
+    },
+    getName : function()
+    {
+      return this._Name;
+    },
+    getDamage : function()
+    {
+      return this._Damage;
+    },
+    getAttackSpeed : function()
+    {
+      return this._AttackSpeed;
+    },
+    getRange : function()
+    {
+      return this._Range;
+    }
 
 };
