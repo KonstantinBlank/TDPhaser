@@ -1,11 +1,11 @@
 function turret_Prefab (game,  pXCoordinate, pYCoordinate, pKey)
 {
-     Phaser.Sprite.call(this, game, pXCoordinate, pYCoordinate, pKey);
+    // Phaser.Sprite.call(this, game, pXCoordinate, pYCoordinate, pKey);
      this.game = game;
      this._Name = "Standardturm";
-     this._Damage = pDamage;
-     this._AttackSpeed = pAttackspeed * 1000;
-     this._Range = pRange; // als Radius
+     this._Damage = 0;
+     this._AttackSpeed = 1 * 1000;
+     this._Range = 20; // als Radius
 
      this._nextFire = 0;
 
