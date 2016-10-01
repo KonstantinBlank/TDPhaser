@@ -3,12 +3,14 @@
  */
 var thegame = function(game){
 
-  var map;
-  var layer;
+   this.map;
+   this.layer;
 //  var _ListOfTurrets = new List();
-  var _Player = new class_player(this, "KKJLD");
-  var cursors;
-  var marker;
+  this._turret = new turret_Prefab(game, 10, 3, 20);
+
+  this._Player = new class_player(this, "KKJLD");
+  this.cursors;
+  this.marker;
 
 };
 
@@ -67,6 +69,7 @@ updateMarker : function () {
 update: function () {
 
   this.arrowscroll();
+  this._turret.attackEnemy();
 
 },
 
