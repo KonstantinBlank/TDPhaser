@@ -1,5 +1,6 @@
-function turret_Prefab (game, pDamage, pAttackspeed, pRange)
+function turret_Prefab (game,  pXCoordinate, pYCoordinate, pKey)
 {
+     Phaser.Sprite.call(this, game, pXCoordinate, pYCoordinate, pKey);
      this.game = game;
      this._Name = "Standardturm";
      this._Damage = pDamage;
@@ -19,33 +20,31 @@ function turret_Prefab (game, pDamage, pAttackspeed, pRange)
 
 }
 
-turret_Prefab.prototype = {
+turret_Prefab.prototype = Object.create(Phaser.Sprite.prototype);
+turret_Prefab.prototype.constructor = turret_Prefab;
 
-    create : function()
+turret_Prefab.prototype.create = function()
     {
-      this._shots = game.add.group();
-      this._shots.enableBody = true;
-      shots.physicsBodyType = Phaser.Pysics.ARCADE;
-    },
 
-    attackEnemy : function(pEnemy)
+    };
+
+    turret_Prefab.prototype.attackEnemy = function(pEnemy, pShots)
     {
-        shot = shots.create()
+
+
         if(this.game.time.time > this._nextFire && pEnemy != null)
         {
-          pEnemy.dealDmg(this._Damage);
-          this._nextFire = this.game.time.time + this._AttackSpeed;
-          console.log("gefeurt" + this.game.time.time);
+          var shot = pShots.create(this.x,this.y,"shot");
+          shot.rotation = this.game.physics.arcade.moveToObject(shot, pEnemy, 60, _nextFire);
 
-          var enemyX = pEnemy.getXCoordinate();
-          var enemyY = pEnemy.getYCoordinate();
-
-          this.game.physics.ARCADE.moveToXY(shot, enemyX, enemyY, 100, this._nextFire);
+            //pEnemy.dealDmg(this._Damage);
+            this._nextFire = this.game.time.time + this._AttackSpeed;
+            console.log("gefeurt" + this.game.time.time);
         }
 
-    },
+    };
 
-    upgrade : function(pStat)
+    turret_Prefab.prototype.upgrade = function(pStat)
     {
       switch(pStat)
       {
@@ -70,37 +69,38 @@ turret_Prefab.prototype = {
         default:
             break;
       }
-    },
+    };
 
-    get_DamagePrice : function()
+    turret_Prefab.prototype.get_DamagePrice = function()
     {
         return this._DamagePrice;
-    },
+    };
 
-    get_SpeedPrice : function()
+    turret_Prefab.prototype.get_SpeedPrice = function()
     {
         return this._SpeedPrice;
-    },
+    };
 
-    get_RangePrice : function()
+    turret_Prefab.prototype.get_RangePrice = function()
     {
         return this._RangePrice;
-    },
-    getName : function()
+    };
+
+    turret_Prefab.prototype.getName = function()
     {
       return this._Name;
-    },
-    getDamage : function()
+    };
+
+    turret_Prefab.prototype.getDamage = function()
     {
       return this._Damage;
-    },
-    getAttackSpeed : function()
+    };
+
+    turret_Prefab.prototype.getAttackSpeed = function()
     {
       return this._AttackSpeed;
-    },
-    getRange : function()
+    };
+    turret_Prefab.prototype.getRange = function()
     {
       return this._Range;
-    }
-
-};
+    };
