@@ -23,7 +23,7 @@ class_player.prototype = {
 
   },
 
-  /*update : function(pExpUpdate,pCurrencyUpdate){
+  update : function(pExpUpdate,pCurrencyUpdate){
     this._Experience += pExpUpdate;
     this._Currency += pCurrencyUpdate;
     updateLevel();
@@ -61,5 +61,5 @@ revive : function(){
 
     useAbility : function (pAbilityNumber) {
       this.Abilities[pAbilityNumber].use();
-    } */
+    }
 };

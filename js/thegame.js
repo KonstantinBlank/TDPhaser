@@ -63,7 +63,7 @@ thegame.prototype = {
       _enemyclass = new enemyclass();
       _enemyclass.create(0,0,0);
 
-      testenemy = this.game.add.sprite(512, 320, 'playerRocket');
+      testenemy = this.game.add.sprite(144, 16, 'enemyeye');
       testenemy.anchor.setTo(0.5, 0.5);
       enemies = this.game.add.group();
       enemies.enablebodie = true;
@@ -152,11 +152,10 @@ updateMarker : function () {
 update : function (){
   //this.game.physics.arcade.overlap(this._shots, , bulletHitPlayer, null, this);
   console.log(testenemy.position.x);
-  enemy1 = enemies.create(32,32,'playerRocket')
-  enemy1.enablebodie = true;
-  enemy1.anchor.setTo(0.5, 0.5);
-  this.game.physics.enable(enemy1, Phaser.Physics.ARCADE);
-  this.game.physics.arcade.moveToXY(enemy1, 900, 900, 3, 10000);
+  //enemy1 = enemies.create(144,16,'enemyeye')
+  //enemy1.enablebodie = true;
+  //enemy1.anchor.setTo(0.5, 0.5);
+  //this.game.physics.enable(enemy1, Phaser.Physics.ARCADE);
   enemies.forEach(function(enemy) {
     _enemyclass.checkPath(enemy); //IMPLEMENTIEREN!
   });
