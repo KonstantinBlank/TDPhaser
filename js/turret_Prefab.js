@@ -13,27 +13,28 @@ function turret_Prefab (pDamage, pAttackspeed, pRange)
     var _isIceTower = false;
     var _isFireTower = false;
     var _isPoisonTower = false;
+}
 
+turret_Prefab.prototype = {
 
-    this.findEnemy = function()
+    findEnemy : function()
     {
         //findet enemy
         //ruft attackEnemy auf und übergibt pEnemy
-    };
+    },
 
-    this.attackEnemy = function(pEnemy)
+    attackEnemy : function(pEnemy)
     {
         if(this._isNormalTower)
         {
-          pEnemy.dealDmg(this._Damage;
+          pEnemy.dealDmg(this._Damage);
         }
 
-    };
+    },
 
-    this.
 
     //upgrades
-        this.upgrade = function(pStat)
+        upgrade : function(pStat)
         {
           switch(pStat){
             case 1:
@@ -57,32 +58,24 @@ function turret_Prefab (pDamage, pAttackspeed, pRange)
             default:
             break;
           }
-        };
+        },
 
-        this.get_DamagePrice()
+        get_DamagePrice : function()
         {
             return this._DamagePrice;
-        };
+        },
 
-        this.get_SpeedPrice()
+        get_SpeedPrice : function()
         {
             return this._SpeedPrice;
-        };
+        },
 
-        this.get_RangePrice()
+        get_RangePrice : function()
         {
             return this._RangePrice;
-        };
-        this.getName()
+        },
+        getName : function()
         {
           return this._Name;
-        };
-
-
-
-
-    this.teste = function()
-    {
-        console.log(_Name);
-    };
+        }
 };

@@ -5,7 +5,7 @@ var thegame = function(game){
 
   var map;
   var layer;
-  var _ListOfTurrets = new List();
+//  var _ListOfTurrets = new List();
   var _Player = new class_player(this, "KKJLD");
   var cursors;
   var marker;
