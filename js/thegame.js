@@ -3,13 +3,15 @@
  */
 var thegame = function(game){
 
-   this.map;
-   this.layer;
-  this._turret = new turret_Prefab(game, 10, 3, 20);
 
-  this._Player = new class_player(this, "KKJLD");
-  this.cursors;
-  this.marker;
+  var map;
+  var layer;
+//  var _ListOfTurrets = new List();
+  var _Player = new class_player(this, "KKJLD");
+  this._TowerListe = [];
+  var _nicht_bebaubar;
+  var cursors;
+  var marker;
 
 };
 
@@ -20,22 +22,19 @@ thegame.prototype = {
   create : function(){
 
     //  Because we're loading CSV map data we have to specify the tile size here or we can't render it
-       map = this.game.add.tilemap('map', 32, 32);
+       this.map = this.game.add.tilemap('map', 32, 32);
 
        //  Now add in the tileset
-       map.addTilesetImage('tiles');
+       this.map.addTilesetImage('tiles');
 
        //  Create our layer
-       layer = map.createLayer(0);
+       layer = this.map.createLayer(0);
 
        //  Resize the world
        layer.resizeWorld();
 
        //  Allow cursors to scroll around the map
        cursors = this.game.input.keyboard.createCursorKeys();
-
-       var help = this.game.add.text(32, 32, 'Arrows to scroll', { font: '14px Arial', fill: '#ffffff' });
-       help.fixedToCamera = true;
 
        //Adds 32*32 marker on curser position
        marker = this.game.add.graphics();
@@ -44,26 +43,37 @@ thegame.prototype = {
        this.game.input.addMoveCallback(this.updateMarker, this);
 
        this.game.input.onDown.add(this.getTileProperties, this);
+       this.game.input.onDown.add(this.setzeTower, this);
 
        this.game.physics.startSystem(Phaser.Physics.ARCADE);
 
 
 
 },
-//player = this.game.add.sprite(this.game.world.centerX,this.game.world.height-200,'playerRocket');
+
 
 update: function () {
 
-  this.arrowscroll();
 
-  if (this.game.input.activePointer.leftButton.isDown)
-  {
+},
 
-    var x = layer.getTileX(this.game.input.activePointer.worldX)*32;
-    var y = layer.getTileY(this.game.input.activePointer.worldY)*32;
-    var newTower = this.game.add.sprite(x,y,"mage");
-    console.log("Klappt",x,y);
-  }
+setzeTower : function(){
+
+      var x = layer.getTileX(this.game.input.activePointer.worldX);
+      var y = layer.getTileY(this.game.input.activePointer.worldY);
+      var index = x+"-"+y;
+      if(this.map.getTile(x,y,layer).index != 967 && this.map.getTile(x,y,layer).index != 990 && this.map.getTile(x,y,layer).index != 989 && this._TowerListe[index] == undefined)
+      {
+        console.log("Tower gebaut");
+        var newTower = this.game.add.sprite(x*32,y*32,"mage");
+        this._TowerListe[index] = newTower;
+      }
+      else {
+
+        //this._nicht_bebaubar = this.game.add.text((this.game.world.width)-650,this.game.world.centerY,'Kann dort nicht gebaut werden!',{font : '25px Roman', fill: '#272421'});
+      //this.game.time.events.add(2000, function() {    this.game.add.tween(Kann dort nicht gebaut werden!).to({y: 0}, 1500, Phaser.Easing.Linear.None, true);    this.game.add.tween(Kann dort nicht gebaut werden!).to({alpha: 0}, 1500, Phaser.Easing.Linear.None, true);}, this);
+
+      }
 },
 
 getTileProperties : function () {
@@ -71,7 +81,7 @@ getTileProperties : function () {
     var x = layer.getTileX(this.game.input.activePointer.worldX);
     var y = layer.getTileY(this.game.input.activePointer.worldY);
 
-    var tile = map.getTile(x, y, layer);
+    var tile = this.map.getTile(x, y, layer);
 
     tile.properties.wibble = true;
     console.log(x+ ";" + y);
@@ -85,26 +95,6 @@ updateMarker : function () {
 },
 
 
-
-
-arrowscroll : function(){
-        if (cursors.left.isDown)
-         {
-          this.game.camera.x -= 4;
-         }
-         else if (cursors.right.isDown)
-         {
-         this.game.camera.x += 4;
-         }
-         if (cursors.up.isDown)
-         {
-         this.game.camera.y -= 4;
-         }
-         else if (cursors.down.isDown)
-         {
-         this.game.camera.y += 4;
-         }
-   },
 
    upgrade : function(pTurret, pStat)
    {
