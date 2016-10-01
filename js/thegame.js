@@ -35,6 +35,8 @@ thegame.prototype = {
 
        var help = this.game.add.text(32, 32, 'Arrows to scroll', { font: '14px Arial', fill: '#ffffff' });
        help.fixedToCamera = true;
+
+       //Adds 32*32 marker on curser position
        marker = this.game.add.graphics();
        marker.lineStyle(2, 0xffffff, 1);
        marker.drawRect(0, 0, 32, 32);
