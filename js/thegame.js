@@ -6,6 +6,8 @@ var thegame = function(game){
   var map;
   var layer;
   var cursors;
+  var marker;
+
 
 };
 
@@ -16,7 +18,7 @@ thegame.prototype = {
   create : function(){
 
     //  Because we're loading CSV map data we have to specify the tile size here or we can't render it
-       map = this.game.add.tilemap('map', 16, 16);
+       map = this.game.add.tilemap('map', 32, 32);
 
        //  Now add in the tileset
        map.addTilesetImage('tiles');
@@ -30,8 +32,33 @@ thegame.prototype = {
        //  Allow cursors to scroll around the map
        cursors = this.game.input.keyboard.createCursorKeys();
 
-       var help = this.game.add.text(16, 16, 'Arrows to scroll', { font: '14px Arial', fill: '#ffffff' });
+       var help = this.game.add.text(32, 32, 'Arrows to scroll', { font: '14px Arial', fill: '#ffffff' });
        help.fixedToCamera = true;
+       marker = this.game.add.graphics();
+       marker.lineStyle(2, 0xffffff, 1);
+       marker.drawRect(0, 0, 32, 32);
+       this.game.input.addMoveCallback(this.updateMarker, this);
+
+       this.game.input.onDown.add(this.getTileProperties, this);
+
+},
+
+getTileProperties : function () {
+
+    var x = layer.getTileX(this.game.input.activePointer.worldX);
+    var y = layer.getTileY(this.game.input.activePointer.worldY);
+
+    var tile = map.getTile(x, y, layer);
+
+    tile.properties.wibble = true;
+    console.log(x+ ";" + y);
+},
+
+updateMarker : function () {
+
+    marker.x = layer.getTileX(this.game.input.activePointer.worldX) * 32;
+    marker.y = layer.getTileY(this.game.input.activePointer.worldY) * 32;
+
 },
 
 update: function () {
