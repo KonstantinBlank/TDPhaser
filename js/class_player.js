@@ -19,34 +19,34 @@ class_player = function(game, pName){
 
 //Methoden:
 
-player.prototype.updateLevel = function(){
+this.updateLevel = function(){
   if(this.Experience >= this._Level*100){
     (this._Level*100)-this.Experience;
     this._Level += 1;
   }
 };
 
-player.prototype.update = function(pExpUpdate,pCurrencyUpdate){
+this.update = function(pExpUpdate,pCurrencyUpdate){
   this._Experience += pExpUpdate;
   this._Currency += pCurrencyUpdate;
   updateLevel();
 };
 
-player.prototype.dying = function(){
+this.dying = function(){
   this._isAlive = false;
 };
 
-player.prototype.revive = function(){
+this.revive = function(){
   this._isAlive = true;
 };
 
 
 //Abilities
 
-    player.prototype.chooseAbility = function(pAbilityNumber, pNewAbility){
+    this.chooseAbility = function(pAbilityNumber, pNewAbility){
         this._Abilities[pAbilityNumber] = pNewAbility;
     };
 
-    player.prototype.useAbility = function (pAbilityNumber) {
+    this.useAbility = function (pAbilityNumber) {
       this.Abilities[pAbilityNumber].use();
     };
