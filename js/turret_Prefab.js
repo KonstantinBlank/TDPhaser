@@ -1,15 +1,12 @@
-fuction turret_Prefab(pName, pDamage, pAttackspeed, pRange)
+turret_Prefab = function (pName, pDamage, pAttackspeed, pRange)
 {
-    this._Name = pName;
-    this._Damage = pDamage;
-    this._AttackSpeed = pAttackspeed;
-    this._Range = pRange; // als Radius
+    var _Name = pName;
+    var _Damage = pDamage;
+    var _AttackSpeed = pAttackspeed;
+    var _Range = pRange; // als Radius
 
-    //test
-    this.test = function()
+    this.teste = function()
     {
-        var turret = new turret_Prefab(eis, 10, 2, 20) {};
-        consol.log(turret);
-    }
-
-}
+        console.log(_Name);
+    };
+};
