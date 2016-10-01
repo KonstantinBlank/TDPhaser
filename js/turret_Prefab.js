@@ -22,11 +22,11 @@ turret_Prefab = function  (game,  pXCoordinate, pYCoordinate, pKey, pShots)
 
      this.game.add.existing(this);
 
-     this.game.physics.enable(this, Phaser.Physics.ARCADE);
+     this.game.physics.enable(this);
      this.enableBody = true;
 
-     this.physicsBodyType = Phaser.Physics.ARCADE;
-     this.body.setCircle(_Range);
+     //this.physicsBodyType = Phaser.Physics.ARCADE;
+     this.body.setCircle(this._Range);
 }
 
 turret_Prefab.prototype = Object.create(Phaser.Sprite.prototype);

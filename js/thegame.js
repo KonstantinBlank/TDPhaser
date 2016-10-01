@@ -65,13 +65,14 @@ thegame.prototype = {
       this._enemyclass = new enemyclass();
       this._enemyclass.create(0,0,0);
 
-      this.enemies = this.game.add.group();
-      this.enemies.enablebodie = true;
+      this.enemies = this.game.add.physicsGroup();
+      this.enemies.enableBody = true;
 
       this.testenemy = this.enemies.create(144, 16, 'enemyeye');
       this.testenemy.anchor.setTo(0.5, 0.5);
       this.game.physics.enable(this.testenemy, Phaser.Physics.ARCADE);
       this.game.physics.enable(this.enemies, Phaser.Physics.ARCADE);
+      this.testenemy.enableBody = true;
       //this.enemies.add(testenemy);
 
 },
@@ -176,10 +177,11 @@ update : function (){
 
   });//forEach
 
-  this._TowerListe.forEach(function(pTower)
+  //this._TowerListe.forEach(function(pTower)
+  for(property in this._TowerListe)
   {
-    pTower.searchEnemy(this.enemies);
-  });//forEach
+    this._TowerListe[property].searchEnemy(this.enemies);
+  }
 
   this.game.physics.arcade.overlap(this._shots,this.enemies , this.shotHit, null, this);
 
