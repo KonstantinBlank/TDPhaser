@@ -120,5 +120,6 @@ var _waypoint = 0;
        else {
          enemy.body.velocity.x = 0;
          enemy.body.velocity.y = 10;
+       }
     }
-}
+};

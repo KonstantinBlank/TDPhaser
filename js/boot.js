@@ -13,14 +13,6 @@ boot.prototype = {
         this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
         this.scale.pageAlignHorizontally = true;
 
-
-
-        var turret = new turret_Prefab("eis", 10, 2, 20);
-
-
-
-        
-
         //this.scale.setScreenSize();
         this.game.state.start("Preload");
     }
