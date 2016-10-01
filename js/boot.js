@@ -12,7 +12,8 @@ boot.prototype = {
     create: function(){
         this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
         this.scale.pageAlignHorizontally = true;
-        var test = new enemyclass (0,0,0);
+        var test = new enemyclass ();
+        test.create(0,0,0);
         console.log(test.getDmg());
 
         //this.scale.setScreenSize();
