@@ -9,6 +9,7 @@ var thegame = function(game){
 //  var _ListOfTurrets = new List();
   this._Player = new class_player(this, "KKJLD");
   this._TowerListe = [];
+  this._time = 0;
   var _nicht_bebaubar;
   var cursors;
   var marker;
@@ -77,7 +78,7 @@ thegame.prototype = {
       //this.enemies.add(testenemy);
 
 
->>>>>>> origin/master
+
 },
 
 killLeiste : function()
@@ -104,14 +105,10 @@ click : function(){
 
         if (this._TowerListe[index] == undefined)
         {
-<<<<<<< HEAD
+
           var newTower = new turret_Prefab(this.game,x*32,y*32,"saggitarius");
           this._TowerListe[index] = newTower;
-=======
-          var newTower = new turret_Prefab(this.game,x*32,y*32,"saggitaurus");
-          this._TowerListe[index] = newTower;
-          this.killLeiste();
->>>>>>> origin/master
+
         }
 
         //this.game.add.sprite(this.game.world.centerX,this.game.world.height-200,'playerRocket');
@@ -174,21 +171,21 @@ updateMarker : function () {
 update : function (){
   //this.game.physics.arcade.overlap(this._shots, , bulletHitPlayer, null, this);
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-  //console.log(testenemy.position.x);
-=======
-  //console.log(this.testenemy.position.x);
->>>>>>> origin/master
-=======
+
 
   console.log(this.testenemy.position.x + "x ; y " + this.testenemy.position.y);
 
->>>>>>> origin/master
-  //enemy1 = enemies.create(144,16,'enemyeye')
-  //enemy1.enablebodie = true;
-  //enemy1.anchor.setTo(0.5, 0.5);
-  //this.game.physics.enable(enemy1, Phaser.Physics.ARCADE);
+  if(this.enemies.countLiving() <= 5 && this._time <= 0)
+  {
+    enemy1 = this.enemies.create(144,16,'enemyeye')
+    enemy1.enablebodie = true;
+    enemy1.anchor.setTo(0.5, 0.5);
+    this.game.physics.enable(enemy1, Phaser.Physics.ARCADE);
+    this._time = 200;
+  }
+  else {
+    this._time = this._time -1;
+  }
   var self = this;
   this.enemies.forEach(function(enemy) {
 
