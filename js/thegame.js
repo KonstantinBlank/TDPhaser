@@ -115,7 +115,8 @@ click : function(){
       var y = layer.getTileY(this.game.input.activePointer.worldY);
       var index = x+"-"+y;
       if(this.map.getTile(x,y,layer).index != 1047 && this.map.getTile(x,y,layer).index != 979 && this.map.getTile(x,y,layer).index != 1001
-          && this.map.getTile(x,y,layer).index != 2719 && this.map.getTile(x,y,layer).index != 68 && this.map.getTile(x,y,layer).index != 1184 )
+          && this.map.getTile(x,y,layer).index != 2719 && this.map.getTile(x,y,layer).index != 68 && this.map.getTile(x,y,layer).index != 1184
+          && this.map.getTile(x,y,layer).index != 881 && this.map.getTile(x,y,layer).index != 882 && this.map.getTile(x,y,layer).index != 883)
       {
         this.killLeiste();
 
@@ -257,13 +258,23 @@ render : function()
 
  shotHit : function(pEnemy, pShot)
  {
-    var Blut = this.game.add.Sprite(pEnemy.position.x,pEnemy.position.y,'explosion');
-    this.game.time.events.add(Phaser.Timer.SECOND * 2, function(){Blut.kill();}, this);
+    //var Blut = this.game.add.sprite((pEnemy.position.x),(pEnemy.position.y),'explosion');
+    //Blut.anchor.setTo(0.5,0.5);
+    emitterHit = this.game.add.emitter(pEnemy.position.x,pEnemy.position.y,400);
+    emitterHit.makeParticles('boost1');
+    emitterHit.start(true, 1000, null, 15);
+
+    this._Player.addCurrency(5);
+    this._CurrencyText.kill();
+    this.update_Currency();
+
+
+    //this.game.time.events.add(Phaser.Timer.SECOND * 2, function(){Blut.kill();}, this);
     pShot.kill();
     //this._enemyclass.dealDmg(pShot.damage, pEnemy);
     pEnemy.enableBody = false;
     pEnemy.kill();
-    this._Player.addCurrency(5);
+
     // = null;
     console.log("greife Gegner an");
  },
