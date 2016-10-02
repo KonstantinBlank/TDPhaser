@@ -5,7 +5,7 @@ turret_Prefab = function  (game,  pXCoordinate, pYCoordinate, pKey, pShots)
      this._Name = "Standardturm";
      this._shots = pShots;
      this._Damage = 10;
-     this._AttackSpeed = 1 * 1000;
+     this._AttackSpeed = 5 * 1000;
      this._Range = 100; // als Radius
 
 
@@ -48,9 +48,9 @@ turret_Prefab.prototype.searchEnemy = function(pEnemies)
     {
         if(this.game.time.time > this._nextFire && pEnemy != null)
         {
-          var shot = this._shots.create(this.x,this.y,"shot");
+            var shot = this._shots.create(this.x,this.y,"shot");
           shot.damage = this._Damage;
-          shot.rotation = this.game.physics.arcade.moveToObject(shot, pEnemy, 60, 100);
+          shot.rotation = this.game.physics.arcade.moveToObject(shot, pEnemy, 5, 100);
 
             //pEnemy.dealDmg(this._Damage);
             this._nextFire = this.game.time.time + this._AttackSpeed;

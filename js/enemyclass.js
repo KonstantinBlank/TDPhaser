@@ -53,12 +53,13 @@ enemyclass = function ()
       return this.y;
     },
 
-    dealDmg : function (pDamage)
+    dealDmg : function (pDamage, pEnemy)
     {
-      _hp = _hp - pDamage;
-      if(_hp <= 0)
+      if(!pEnemy.hp ) pEnemy.kill();
+      pEnemy.hp -= pDamage;
+      if(pEnemy.hp <= 0)
       {
-        enemy.kill();
+        pEnemy.kill();
       }
 
     },

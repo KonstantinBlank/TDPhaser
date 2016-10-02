@@ -9,7 +9,7 @@ var thegame = function(game){
 //  var _ListOfTurrets = new List();
   this._Player = new class_player(this, "KKJLD");
   this._TowerListe = [];
-  this._time = 0;
+  this._time = 200;
   var _nicht_bebaubar;
   var cursors;
   var marker;
@@ -78,6 +78,7 @@ thegame.prototype = {
       this.game.physics.enable(this.testenemy, Phaser.Physics.ARCADE);
       this.game.physics.enable(this.enemies, Phaser.Physics.ARCADE);
       this.testenemy.enableBody = true;
+
       //this.enemies.add(testenemy);
 
 },
@@ -113,7 +114,7 @@ click : function(){
 
         if (this._TowerListe[index] == undefined)
         {
-          var newTower = new turret_Prefab(this.game,x*32,y*32,"saggitarius");
+          var newTower = new turret_Prefab(this.game,x*32,y*32,"saggitarius", this._shots);
           this._TowerListe[index] = newTower;
         }
 
@@ -178,17 +179,18 @@ update : function (){
 
 
 
-  console.log(this.testenemy.position.x + "x ; y " + this.testenemy.position.y);
+  //console.log(this.testenemy.position.x + "x ; y " + this.testenemy.position.y);
 
-  if(this.enemies.countLiving() <= 5 && this._time <= 0)
+  if(this.enemies.countLiving() <= 30 && this._time <= 0)
   {
     enemy1 = this.enemies.create(144,16,'enemyeye')
     enemy1.enableBody = true;
     enemy1.anchor.setTo(0.5, 0.5);
     this.game.physics.enable(enemy1, Phaser.Physics.ARCADE);
-    this._time = 200;
+    this._time = 60;
     enemy1.animations.add('default', [0, 1, 2, 3], 5, true);
     enemy1.animations.play('default');
+    enemy1.hp = 50;
   }
   else {
     this._time = this._time -1;
@@ -209,24 +211,34 @@ update : function (){
     console.log(property + "sucht gegner");
   }
 
-  this.game.physics.arcade.overlap(this.testenemy,this._shots , this.shotHit, null, this);
+  this.game.physics.arcade.overlap(this.enemies,this._shots , this.shotHit, null, this);
+  this.game.physics.arcade.overlap(this._testenemy,this._shots , this.shotHit, null, this);
 
 },
 
 render : function()
 {
-  if(this.testenemy)  this.game.debug.body(this.testenemy);
-  if(this.testtower)  this.game.debug.body(this.testtower);
+  var self  = this;
+  this.enemies.forEach(function(enemy)
+  {
+    self.game.debug.body(enemy);
+  });
+
+
+  for(property in this._TowerListe)
+  {
+      this.game.debug.body(this._TowerListe[property]);
+  }
 },
 
 
  shotHit : function(pEnemy, pShot)
  {
     pShot.kill();
-    //this._enemyclass.dealDmg(pShot.damage);
+    //this._enemyclass.dealDmg(pShot.damage, pEnemy);
     pEnemy.enableBody = false;
     pEnemy.kill();
-    this.testenemy = null;
+    // = null;
     console.log("greife Gegner an");
  },
 
