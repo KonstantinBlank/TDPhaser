@@ -73,7 +73,7 @@ turret_Prefab.prototype.searchEnemy = function(pEnemies)
             this._RangePrice *= 2;
             break;
         case 2:
-            this._AttackSpeed -= 1000;
+            this._AttackSpeed -= 500;
             this._DamagePrice *= 2;
             this._SpeedPrice *= 2;
             this._RangePrice *= 2;
