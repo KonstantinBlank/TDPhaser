@@ -17,8 +17,11 @@ var thegame = function(game){
   var button2;
   var button3;
   var text1;
+  var text1_2;
   var text2;
+  var text2_2;
   var text3;
+  var text3_2;
   var selectedTower;
   var showButtons = false;
   var _enemyclass = null;
@@ -85,10 +88,13 @@ killLeiste : function()
   {
     this.button1.kill();
     this.text1.kill();
+    this.text1_2.kill();
     this.button2.kill();
     this.text2.kill();
+    this.text2_2.kill();
     this.button3.kill();
     this.text3.kill();
+    this.text3_2.kill();
     this.showButtons = false;
   }
 },
@@ -116,11 +122,14 @@ click : function(){
           this.showButtons = true;
           this.selectedTower = index;
           this.text1 = this.game.add.text(2*32,17*32,'Damage:'+this._TowerListe[index].getDamage(),{font: '25px Roman',fill: '#FFFFFF'});
-          this.text2 = this.game.add.text(8*32,17*32,'Speed:'+this._TowerListe[index].getAttackSpeed(),{font: '25px Roman',fill: '#FFFFFF'});
-          this.text3 = this.game.add.text(14*32,17*32,'Range:'+this._TowerListe[index].getRange(),{font: '25px Roman',fill: '#FFFFFF'});
+                        this.text1_2 = this.game.add.text(7*32,17*32,'-'+this._TowerListe[index].get_DamagePrice(),{font: '25px Roman',fill: '#FFFFFF'});
+          this.text2 = this.game.add.text(10*32,17*32,'Speed:'+this._TowerListe[index].getAttackSpeed(),{font: '25px Roman',fill: '#FFFFFF'});
+                        this.text2_2 = this.game.add.text(15*32,17*32,'-'+this._TowerListe[index].get_DamagePrice(),{font: '25px Roman',fill: '#FFFFFF'});
+          this.text3 = this.game.add.text(18*32,17*32,'Range:'+this._TowerListe[index].getRange(),{font: '25px Roman',fill: '#FFFFFF'});
+                        this.text3_2 = this.game.add.text(23*32,17*32,'-'+this._TowerListe[index].get_DamagePrice(),{font: '25px Roman',fill: '#FFFFFF'});
           this.button1 =  this.game.add.sprite(6*32,17*32,'button');
-          this.button2 =  this.game.add.sprite(12*32,17*32,'button');
-          this.button3 =  this.game.add.sprite(18*32,17*32,'button');
+          this.button2 =  this.game.add.sprite(14*32,17*32,'button');
+          this.button3 =  this.game.add.sprite(22*32,17*32,'button');
         }
       }
       else if (this.map.getTile(x,y,layer).index == 68 && this.showButtons)
@@ -130,11 +139,11 @@ click : function(){
               this.upgrade(this._TowerListe[this.selectedTower],this._Player,1);
               this.killLeiste();
             break;
-            case "12-17":
+            case "14-17":
                 this.upgrade(this._TowerListe[this.selectedTower],this._Player,2);
                 this.killLeiste();
               break;
-              case "18-17":
+              case "22-17":
                   this.upgrade(this._TowerListe[this.selectedTower],this._Player,3);
                   this.killLeiste();
                 break;
