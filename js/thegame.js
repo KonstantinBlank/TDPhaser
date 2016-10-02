@@ -118,7 +118,7 @@ click : function(){
       var index = x+"-"+y;
       if(this.map.getTile(x,y,layer).index != 1047 && this.map.getTile(x,y,layer).index != 979 && this.map.getTile(x,y,layer).index != 1001
           && this.map.getTile(x,y,layer).index != 2719 && this.map.getTile(x,y,layer).index != 68 && this.map.getTile(x,y,layer).index != 1184
-          && this.map.getTile(x,y,layer).index != 881 && this.map.getTile(x,y,layer).index != 882 && this.map.getTile(x,y,layer).index != 883)
+          && this.map.getTile(x,y,layer).index != 881 && this.map.getTile(x,y,layer).index != 882 && this.map.getTile(x,y,layer).index != 883 && this.map.getTile(x,y,layer).index != 884)
       {
         this.killLeiste();
 
