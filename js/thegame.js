@@ -76,8 +76,6 @@ thegame.prototype = {
       this.testenemy.enableBody = true;
       //this.enemies.add(testenemy);
 
-
->>>>>>> origin/master
 },
 
 killLeiste : function()
@@ -104,14 +102,9 @@ click : function(){
 
         if (this._TowerListe[index] == undefined)
         {
-<<<<<<< HEAD
           var newTower = new turret_Prefab(this.game,x*32,y*32,"saggitarius");
           this._TowerListe[index] = newTower;
-=======
-          var newTower = new turret_Prefab(this.game,x*32,y*32,"saggitaurus");
-          this._TowerListe[index] = newTower;
-          this.killLeiste();
->>>>>>> origin/master
+
         }
 
         //this.game.add.sprite(this.game.world.centerX,this.game.world.height-200,'playerRocket');
@@ -174,17 +167,8 @@ updateMarker : function () {
 update : function (){
   //this.game.physics.arcade.overlap(this._shots, , bulletHitPlayer, null, this);
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-  //console.log(testenemy.position.x);
-=======
-  //console.log(this.testenemy.position.x);
->>>>>>> origin/master
-=======
+//  console.log(this.testenemy.position.x + "x ; y " + this.testenemy.position.y);
 
-  console.log(this.testenemy.position.x + "x ; y " + this.testenemy.position.y);
-
->>>>>>> origin/master
   //enemy1 = enemies.create(144,16,'enemyeye')
   //enemy1.enablebodie = true;
   //enemy1.anchor.setTo(0.5, 0.5);
@@ -203,6 +187,9 @@ update : function (){
   }
 
   this.game.physics.arcade.overlap(this._shots,this.enemies , this.shotHit, null, this);
+
+  this.enemy1.animations.add('default', [0, 1, 2, 3], 5, true);
+  this.enemy1.animations.play('default');
 
 },
 

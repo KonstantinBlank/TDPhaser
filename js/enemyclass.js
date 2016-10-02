@@ -84,7 +84,7 @@ enemyclass = function ()
        {
          this._waypoint = 4;
        }
-        console.log(this._waypoint);
+        //console.log(this._waypoint);
        if (this._waypoint == 5 && enemy.position.y >= 400)
        {
          this._waypoint = 6;
