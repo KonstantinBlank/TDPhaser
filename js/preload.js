@@ -18,7 +18,7 @@ preload.prototype = {
 
 
         //Tower
-        this.game.load.image("saggitarius","assets/tower/saggitarius.png");
+        this.game.load.image("saggitarius","assets/tower/dragon.png");
 
         //Loadingbar
         var loadingBar = this.add.sprite(this.world.centerX,this.world.centerY,"loading");
