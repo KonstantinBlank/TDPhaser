@@ -208,7 +208,6 @@ update : function (){
   for(property in this._TowerListe)
   {
     this._TowerListe[property].searchEnemy(this.enemies);
-    console.log(property + "sucht gegner");
   }
 
   this.game.physics.arcade.overlap(this.enemies,this._shots , this.shotHit, null, this);
@@ -218,6 +217,7 @@ update : function (){
 
 render : function()
 {
+/*
   var self  = this;
   this.enemies.forEach(function(enemy)
   {
@@ -228,7 +228,8 @@ render : function()
   for(property in this._TowerListe)
   {
       this.game.debug.body(this._TowerListe[property]);
-  }
+  }*/
+
 },
 
 

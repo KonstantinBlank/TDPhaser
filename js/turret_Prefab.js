@@ -40,7 +40,6 @@ turret_Prefab.prototype.create = function()
 turret_Prefab.prototype.searchEnemy = function(pEnemies)
 {
   this.game.physics.arcade.overlap(this, pEnemies, this.attackEnemy,null, this);
-  console.log("searchEnemy wird aufgerufen");
 };
 
 
@@ -48,13 +47,14 @@ turret_Prefab.prototype.searchEnemy = function(pEnemies)
     {
         if(this.game.time.time > this._nextFire && pEnemy != null)
         {
-            var shot = this._shots.create(this.x,this.y,"shot");
-          shot.damage = this._Damage;
-          shot.rotation = this.game.physics.arcade.moveToObject(shot, pEnemy, 5, 100);
+          shot = this._shots.create(pTurret.x,pTurret.y,'shot');
+          console.log(pTurret.x +" ; " + pTurret.y);
 
-            //pEnemy.dealDmg(this._Damage);
-            this._nextFire = this.game.time.time + this._AttackSpeed;
-            console.log("gefeurt" + this.game.time.time);
+          //shot.damage = this._Damage;
+          this.game.physics.arcade.moveToObject(shot, pEnemy, 32);
+
+          //pEnemy.dealDmg(this._Damage);
+          this._nextFire = this.game.time.time + this._AttackSpeed;
         }
 
     };
@@ -76,10 +76,11 @@ turret_Prefab.prototype.searchEnemy = function(pEnemies)
             this._RangePrice * 1.5;
             break;
         case 3:
-            this._Range ++;
+            this._Range += 50;
             this._DanagePrice * 1.5;
             this._SpeedPrice * 1.5;
             this._RangePrice * 2;
+            this.body.setCircle(this._Range, -this._Range + 16, -this._Range +16);
             break;
         default:
             break;
