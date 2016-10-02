@@ -109,10 +109,6 @@ click : function(){
         {
           var newTower = new turret_Prefab(this.game,x*32,y*32,"saggitarius");
           this._TowerListe[index] = newTower;
-<<<<<<< HEAD
-
-=======
->>>>>>> origin/master
         }
 
         //this.game.add.sprite(this.game.world.centerX,this.game.world.height-200,'playerRocket');
