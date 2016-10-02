@@ -75,8 +75,6 @@ thegame.prototype = {
       this.game.physics.enable(this.enemies, Phaser.Physics.ARCADE);
       this.testenemy.enableBody = true;
       //this.enemies.add(testenemy);
-
-
 },
 
 killLeiste : function()
@@ -107,8 +105,8 @@ click : function(){
 
         if (this._TowerListe[index] == undefined)
         {
-          var newTower = new turret_Prefab(this.game,x*32,y*32,"saggitaurus");
-          this._TowerListe[index] = newTower;
+          var newTower = new turret_Prefab(this.game,x*32,y*32,"saggitarius");
+          this._TowerListe[index] = newTower;r
         }
 
         //this.game.add.sprite(this.game.world.centerX,this.game.world.height-200,'playerRocket');
@@ -166,7 +164,6 @@ updateMarker : function () {
 
 update : function (){
   //this.game.physics.arcade.overlap(this._shots, , bulletHitPlayer, null, this);
-
 
   console.log(this.testenemy.position.x + "x ; y " + this.testenemy.position.y);
 
