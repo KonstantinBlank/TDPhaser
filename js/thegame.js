@@ -103,8 +103,9 @@ click : function(){
 
         if (this._TowerListe[index] == undefined)
         {
-          var newTower = new turret_Prefab(this.game,x*32,y*32,"saggitaurus");
+          var newTower = new turret_Prefab(this.game,x*32,y*32,"saggitaurus", this._shots);
           this._TowerListe[index] = newTower;
+          this.testtower = newTower;
           this.killLeiste();
         }
 
@@ -185,16 +186,28 @@ update : function (){
   for(property in this._TowerListe)
   {
     this._TowerListe[property].searchEnemy(this.enemies);
+    console.log(property + "sucht gegner");
   }
 
-  this.game.physics.arcade.overlap(this._shots,this.enemies , this.shotHit, null, this);
+  this.game.physics.arcade.overlap(this.testenemy,this._shots , this.shotHit, null, this);
 
 },
 
- shotHit : function(pShot, pEnemy)
+render : function()
+{
+  if(this.testenemy)  this.game.debug.body(this.testenemy);
+  if(this.testtower)  this.game.debug.body(this.testtower);
+},
+
+
+ shotHit : function(pEnemy, pShot)
  {
     pShot.kill();
-    pEnemy.dealDmg();
+    //this._enemyclass.dealDmg(pShot.damage);
+    pEnemy.enableBody = false;
+    pEnemy.kill();
+    this.testenemy = null;
+    console.log("greife Gegner an");
  },
 
 

@@ -6,7 +6,7 @@ turret_Prefab = function  (game,  pXCoordinate, pYCoordinate, pKey, pShots)
      this._shots = pShots;
      this._Damage = 10;
      this._AttackSpeed = 1 * 1000;
-     this._Range = 2000; // als Radius
+     this._Range = 100; // als Radius
 
 
      this._nextFire = 0;
@@ -26,7 +26,7 @@ turret_Prefab = function  (game,  pXCoordinate, pYCoordinate, pKey, pShots)
      this.enableBody = true;
 
      //this.physicsBodyType = Phaser.Physics.ARCADE;
-     this.body.setCircle(this._Range);
+     this.body.setCircle(this._Range, -this._Range + 16, -this._Range +16);
 }
 
 turret_Prefab.prototype = Object.create(Phaser.Sprite.prototype);
@@ -40,17 +40,17 @@ turret_Prefab.prototype.create = function()
 turret_Prefab.prototype.searchEnemy = function(pEnemies)
 {
   this.game.physics.arcade.overlap(this, pEnemies, this.attackEnemy,null, this);
+  console.log("searchEnemy wird aufgerufen");
 };
 
 
     turret_Prefab.prototype.attackEnemy = function(pTurret, pEnemy)
     {
-
-
         if(this.game.time.time > this._nextFire && pEnemy != null)
         {
-          var shot = _shots.create(this.x,this.y,"shot");
-          shot.rotation = this.game.physics.arcade.moveToObject(shot, pEnemy, 60, _nextFire);
+          var shot = this._shots.create(this.x,this.y,"shot");
+          shot.damage = this._Damage;
+          shot.rotation = this.game.physics.arcade.moveToObject(shot, pEnemy, 60, 100);
 
             //pEnemy.dealDmg(this._Damage);
             this._nextFire = this.game.time.time + this._AttackSpeed;

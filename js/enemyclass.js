@@ -58,7 +58,7 @@ enemyclass = function ()
       _hp = _hp - pDamage;
       if(_hp <= 0)
       {
-        destroy();
+        enemy.kill();
       }
 
     },
