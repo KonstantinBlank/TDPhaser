@@ -7,8 +7,9 @@ var thegame = function(game){
   var map;
   var layer;
 //  var _ListOfTurrets = new List();
-  this._Player = new class_player(this, "JP-Player");
+  this._Player = new class_player(this, "KKJLD");
   this._TowerListe = [];
+  this._time = 0;
   var _nicht_bebaubar;
   var cursors;
   var marker;
@@ -16,8 +17,11 @@ var thegame = function(game){
   var button2;
   var button3;
   var text1;
+  var text1_2;
   var text2;
+  var text2_2;
   var text3;
+  var text3_2;
   var selectedTower;
   var showButtons = false;
   var _enemyclass = null;
@@ -76,17 +80,23 @@ thegame.prototype = {
       this.testenemy.enableBody = true;
       //this.enemies.add(testenemy);
 
-
 },
 
 killLeiste : function()
 {
-  this.button1.kill();
-  this.text1.kill();
-  this.button2.kill();
-  this.text2.kill();
-  this.button3.kill();
-  this.text3.kill();
+  if(this.showButtons)
+  {
+    this.button1.kill();
+    this.text1.kill();
+    this.text1_2.kill();
+    this.button2.kill();
+    this.text2.kill();
+    this.text2_2.kill();
+    this.button3.kill();
+    this.text3.kill();
+    this.text3_2.kill();
+    this.showButtons = false;
+  }
 },
 
 
@@ -99,14 +109,12 @@ click : function(){
       if(this.map.getTile(x,y,layer).index != 967 && this.map.getTile(x,y,layer).index != 990 && this.map.getTile(x,y,layer).index != 989
           && this.map.getTile(x,y,layer).index != 2944 && this.map.getTile(x,y,layer).index != 68)
       {
-
+        this.killLeiste();
 
         if (this._TowerListe[index] == undefined)
         {
-          var newTower = new turret_Prefab(this.game,x*32,y*32,"saggitaurus", this._shots);
+          var newTower = new turret_Prefab(this.game,x*32,y*32,"saggitarius");
           this._TowerListe[index] = newTower;
-          this.testtower = newTower;
-          this.killLeiste();
         }
 
         //this.game.add.sprite(this.game.world.centerX,this.game.world.height-200,'playerRocket');
@@ -114,11 +122,14 @@ click : function(){
           this.showButtons = true;
           this.selectedTower = index;
           this.text1 = this.game.add.text(2*32,17*32,'Damage:'+this._TowerListe[index].getDamage(),{font: '25px Roman',fill: '#FFFFFF'});
-          this.text2 = this.game.add.text(8*32,17*32,'Speed:'+this._TowerListe[index].getAttackSpeed(),{font: '25px Roman',fill: '#FFFFFF'});
-          this.text3 = this.game.add.text(14*32,17*32,'Range:'+this._TowerListe[index].getRange(),{font: '25px Roman',fill: '#FFFFFF'});
+                        this.text1_2 = this.game.add.text(7*32,17*32,'-'+this._TowerListe[index].get_DamagePrice(),{font: '25px Roman',fill: '#FFFFFF'});
+          this.text2 = this.game.add.text(10*32,17*32,'Speed:'+this._TowerListe[index].getAttackSpeed(),{font: '25px Roman',fill: '#FFFFFF'});
+                        this.text2_2 = this.game.add.text(15*32,17*32,'-'+this._TowerListe[index].get_DamagePrice(),{font: '25px Roman',fill: '#FFFFFF'});
+          this.text3 = this.game.add.text(18*32,17*32,'Range:'+this._TowerListe[index].getRange(),{font: '25px Roman',fill: '#FFFFFF'});
+                        this.text3_2 = this.game.add.text(23*32,17*32,'-'+this._TowerListe[index].get_DamagePrice(),{font: '25px Roman',fill: '#FFFFFF'});
           this.button1 =  this.game.add.sprite(6*32,17*32,'button');
-          this.button2 =  this.game.add.sprite(12*32,17*32,'button');
-          this.button3 =  this.game.add.sprite(18*32,17*32,'button');
+          this.button2 =  this.game.add.sprite(14*32,17*32,'button');
+          this.button3 =  this.game.add.sprite(22*32,17*32,'button');
         }
       }
       else if (this.map.getTile(x,y,layer).index == 68 && this.showButtons)
@@ -126,17 +137,14 @@ click : function(){
         switch (index) {
           case "6-17":
               this.upgrade(this._TowerListe[this.selectedTower],this._Player,1);
-              this.showButtons = false;
               this.killLeiste();
             break;
-            case "12-17":
+            case "14-17":
                 this.upgrade(this._TowerListe[this.selectedTower],this._Player,2);
-                this.showButtons = false;
                 this.killLeiste();
               break;
-              case "18-17":
+              case "22-17":
                   this.upgrade(this._TowerListe[this.selectedTower],this._Player,3);
-                  this.showButtons = false;
                   this.killLeiste();
                 break;
           default:
@@ -169,12 +177,22 @@ update : function (){
   //this.game.physics.arcade.overlap(this._shots, , bulletHitPlayer, null, this);
 
 
+
   console.log(this.testenemy.position.x + "x ; y " + this.testenemy.position.y);
 
-  //enemy1 = enemies.create(144,16,'enemyeye')
-  //enemy1.enablebodie = true;
-  //enemy1.anchor.setTo(0.5, 0.5);
-  //this.game.physics.enable(enemy1, Phaser.Physics.ARCADE);
+  if(this.enemies.countLiving() <= 5 && this._time <= 0)
+  {
+    enemy1 = this.enemies.create(144,16,'enemyeye')
+    enemy1.enablebodie = true;
+    enemy1.anchor.setTo(0.5, 0.5);
+    this.game.physics.enable(enemy1, Phaser.Physics.ARCADE);
+    this._time = 200;
+  }
+  else {
+    this._time = this._time -1;
+  }
+
+
   var self = this;
   this.enemies.forEach(function(enemy) {
 
@@ -190,6 +208,9 @@ update : function (){
   }
 
   this.game.physics.arcade.overlap(this.testenemy,this._shots , this.shotHit, null, this);
+
+  this.enemy1.animations.add('default', [0, 1, 2, 3], 5, true);
+  this.enemy1.animations.play('default');
 
 },
 
