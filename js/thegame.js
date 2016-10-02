@@ -256,10 +256,13 @@ render : function()
 
  shotHit : function(pEnemy, pShot)
  {
+    var Blut = this.game.add.Sprite(pEnemy.position.x,pEnemy.position.y,'explosion');
+    this.game.time.events.add(Phaser.Timer.SECOND * 2, function(){Blut.kill();}, this);
     pShot.kill();
     //this._enemyclass.dealDmg(pShot.damage, pEnemy);
     pEnemy.enableBody = false;
     pEnemy.kill();
+    this._Player.addCurrency(5);
     // = null;
     console.log("greife Gegner an");
  },

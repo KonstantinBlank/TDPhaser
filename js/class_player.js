@@ -44,6 +44,11 @@ reduceCurrency : function(pPrice){
   this._Currency -= pPrice;
 },
 
+addCurrency : function(pPrice)
+{
+  this._Currency += pPrice;
+},
+
 dying : function(){
   this._isAlive = false;
 },
