@@ -77,18 +77,20 @@ thegame.prototype = {
       this.testenemy.enableBody = true;
       //this.enemies.add(testenemy);
 
-
-
 },
 
 killLeiste : function()
 {
-  this.button1.kill();
-  this.text1.kill();
-  this.button2.kill();
-  this.text2.kill();
-  this.button3.kill();
-  this.text3.kill();
+  if(this.showButtons)
+  {
+    this.button1.kill();
+    this.text1.kill();
+    this.button2.kill();
+    this.text2.kill();
+    this.button3.kill();
+    this.text3.kill();
+    this.showButtons = false;
+  }
 },
 
 
@@ -101,19 +103,16 @@ click : function(){
       if(this.map.getTile(x,y,layer).index != 967 && this.map.getTile(x,y,layer).index != 990 && this.map.getTile(x,y,layer).index != 989
           && this.map.getTile(x,y,layer).index != 2944 && this.map.getTile(x,y,layer).index != 68)
       {
-
+        this.killLeiste();
 
         if (this._TowerListe[index] == undefined)
         {
-
           var newTower = new turret_Prefab(this.game,x*32,y*32,"saggitarius");
           this._TowerListe[index] = newTower;
-
         }
 
         //this.game.add.sprite(this.game.world.centerX,this.game.world.height-200,'playerRocket');
         else if (this._TowerListe[index] != undefined) {
-          this.killLeiste();
           this.showButtons = true;
           this.selectedTower = index;
           this.text1 = this.game.add.text(2*32,17*32,'Damage:'+this._TowerListe[index].getDamage(),{font: '25px Roman',fill: '#FFFFFF'});
@@ -129,17 +128,14 @@ click : function(){
         switch (index) {
           case "6-17":
               this.upgrade(this._TowerListe[this.selectedTower],this._Player,1);
-              this.showButtons = false;
               this.killLeiste();
             break;
             case "12-17":
                 this.upgrade(this._TowerListe[this.selectedTower],this._Player,2);
-                this.showButtons = false;
                 this.killLeiste();
               break;
               case "18-17":
                   this.upgrade(this._TowerListe[this.selectedTower],this._Player,3);
-                  this.showButtons = false;
                   this.killLeiste();
                 break;
           default:
@@ -172,7 +168,6 @@ update : function (){
   //this.game.physics.arcade.overlap(this._shots, , bulletHitPlayer, null, this);
 
 
-
   console.log(this.testenemy.position.x + "x ; y " + this.testenemy.position.y);
 
   if(this.enemies.countLiving() <= 5 && this._time <= 0)
@@ -186,6 +181,7 @@ update : function (){
   else {
     this._time = this._time -1;
   }
+
   var self = this;
   this.enemies.forEach(function(enemy) {
 
