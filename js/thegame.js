@@ -77,6 +77,7 @@ thegame.prototype = {
       this.game.physics.enable(this.enemies, Phaser.Physics.ARCADE);
       this.testenemy.enableBody = true;
       //this.enemies.add(testenemy);
+>>>>>>> origin/master
 
 >>>>>>> origin/master
 },
@@ -175,9 +176,15 @@ update : function (){
   //this.game.physics.arcade.overlap(this._shots, , bulletHitPlayer, null, this);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   //console.log(testenemy.position.x);
 =======
   //console.log(this.testenemy.position.x);
+>>>>>>> origin/master
+=======
+
+  console.log(testenemy.position.x + "x ; y " + testenemy.position.y);
+
 >>>>>>> origin/master
   //enemy1 = enemies.create(144,16,'enemyeye')
   //enemy1.enablebodie = true;
