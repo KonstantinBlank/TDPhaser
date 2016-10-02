@@ -272,9 +272,11 @@ render : function()
     this.update_Currency();
 
     pShot.kill();
+    this._shots.remove(pShot);
     //this._enemyclass.dealDmg(pShot.damage, pEnemy);
     pEnemy.enableBody = false;
     pEnemy.kill();
+    this.enemies.remove(pEnemy);
 
     // = null;
     console.log("greife Gegner an");
