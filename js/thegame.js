@@ -7,7 +7,7 @@ var thegame = function(game){
   var map;
   var layer;
 //  var _ListOfTurrets = new List();
-  this._Player = new class_player(this, "JP-Player");
+  this._Player = new class_player(this, "KKJLD");
   this._TowerListe = [];
   var _nicht_bebaubar;
   var cursors;
@@ -110,6 +110,7 @@ click : function(){
 
         //this.game.add.sprite(this.game.world.centerX,this.game.world.height-200,'playerRocket');
         else if (this._TowerListe[index] != undefined) {
+          this.killLeiste();
           this.showButtons = true;
           this.selectedTower = index;
           this.text1 = this.game.add.text(2*32,17*32,'Damage:'+this._TowerListe[index].getDamage(),{font: '25px Roman',fill: '#FFFFFF'});
