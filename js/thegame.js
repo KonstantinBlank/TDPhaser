@@ -171,14 +171,7 @@ updateMarker : function () {
 update : function (){
   //this.game.physics.arcade.overlap(this._shots, , bulletHitPlayer, null, this);
 
-<<<<<<< HEAD
-//  console.log(this.testenemy.position.x + "x ; y " + this.testenemy.position.y);
 
-  //enemy1 = enemies.create(144,16,'enemyeye')
-  //enemy1.enablebodie = true;
-  //enemy1.anchor.setTo(0.5, 0.5);
-  //this.game.physics.enable(enemy1, Phaser.Physics.ARCADE);
-=======
 
   console.log(this.testenemy.position.x + "x ; y " + this.testenemy.position.y);
 
@@ -194,7 +187,7 @@ update : function (){
     this._time = this._time -1;
   }
 
->>>>>>> origin/master
+
   var self = this;
   this.enemies.forEach(function(enemy) {
 
