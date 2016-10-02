@@ -10,7 +10,7 @@ function class_player(game, pName){
   this._isAlive = true;
   this._Experience = 0;
   this._Level = 0;
-  this._Currency = 30000000;
+  this._Currency = 200;
   this._Abilities = [];
   this._allAbilities = [];
 }
@@ -42,6 +42,11 @@ getCurrency : function(){
 
 reduceCurrency : function(pPrice){
   this._Currency -= pPrice;
+},
+
+addCurrency : function(pPrice)
+{
+  this._Currency += pPrice;
 },
 
 dying : function(){

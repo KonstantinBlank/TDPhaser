@@ -25,6 +25,7 @@ var thegame = function(game){
   var selectedTower;
   var showButtons = false;
   var _enemyclass = null;
+  var _CurrencyText;
 
 };
 
@@ -80,7 +81,13 @@ thegame.prototype = {
       this.testenemy.enableBody = true;
 
       //this.enemies.add(testenemy);
+      this.update_Currency();
 
+},
+
+update_Currency : function()
+{
+  this._CurrencyText = this.game.add.text(27*32,17*32,'Gold:'+this._Player.getCurrency(),{font: '25px Roman',fill: '#A68200'});
 },
 
 killLeiste : function()
@@ -116,6 +123,15 @@ click : function(){
         {
           var newTower = new turret_Prefab(this.game,x*32,y*32,"saggitarius", this._shots);
           this._TowerListe[index] = newTower;
+          if (this._Player.getCurrency() >= 100) {
+            this._Player.reduceCurrency(100);
+            this._CurrencyText.kill();
+            this.update_Currency();
+          }
+          else {
+            var Fehlertext = this.game.add.text(11*32,10*32,'Nicht genügend Gold!',{font: '25px Roman',fill: '#A68200'});
+            this.game.time.events.add(Phaser.Timer.SECOND * 2, function(){Fehlertext.kill();}, this);
+          }
         }
 
         //this.game.add.sprite(this.game.world.centerX,this.game.world.height-200,'playerRocket');
@@ -123,11 +139,11 @@ click : function(){
           this.showButtons = true;
           this.selectedTower = index;
           this.text1 = this.game.add.text(2*32,17*32,'Damage:'+this._TowerListe[index].getDamage(),{font: '25px Roman',fill: '#FFFFFF'});
-                        this.text1_2 = this.game.add.text(7*32,17*32,'-'+this._TowerListe[index].get_DamagePrice(),{font: '25px Roman',fill: '#FFFFFF'});
+                        this.text1_2 = this.game.add.text(7*32,17*32,'-'+this._TowerListe[index].get_DamagePrice()+'G',{font: '25px Roman',fill: '#A68200'});
           this.text2 = this.game.add.text(10*32,17*32,'Speed:'+this._TowerListe[index].getAttackSpeed(),{font: '25px Roman',fill: '#FFFFFF'});
-                        this.text2_2 = this.game.add.text(15*32,17*32,'-'+this._TowerListe[index].get_DamagePrice(),{font: '25px Roman',fill: '#FFFFFF'});
+                        this.text2_2 = this.game.add.text(15*32,17*32,'-'+this._TowerListe[index].get_SpeedPrice()+'G',{font: '25px Roman',fill: '#A68200'});
           this.text3 = this.game.add.text(18*32,17*32,'Range:'+this._TowerListe[index].getRange(),{font: '25px Roman',fill: '#FFFFFF'});
-                        this.text3_2 = this.game.add.text(23*32,17*32,'-'+this._TowerListe[index].get_DamagePrice(),{font: '25px Roman',fill: '#FFFFFF'});
+                        this.text3_2 = this.game.add.text(23*32,17*32,'-'+this._TowerListe[index].get_RangePrice()+'G',{font: '25px Roman',fill: '#A68200'});
           this.button1 =  this.game.add.sprite(6*32,17*32,'button');
           this.button2 =  this.game.add.sprite(14*32,17*32,'button');
           this.button3 =  this.game.add.sprite(22*32,17*32,'button');
@@ -138,15 +154,21 @@ click : function(){
         switch (index) {
           case "6-17":
               this.upgrade(this._TowerListe[this.selectedTower],this._Player,1);
+              this._CurrencyText.kill();
+              this.update_Currency();
               this.killLeiste();
             break;
             case "14-17":
                 this.upgrade(this._TowerListe[this.selectedTower],this._Player,2);
+                this._CurrencyText.kill();
                 this.killLeiste();
+                this.update_Currency();
               break;
               case "22-17":
                   this.upgrade(this._TowerListe[this.selectedTower],this._Player,3);
+                  this._CurrencyText.kill();
                   this.killLeiste();
+                  this.update_Currency();
                 break;
           default:
         }
@@ -235,10 +257,13 @@ render : function()
 
  shotHit : function(pEnemy, pShot)
  {
+    var Blut = this.game.add.Sprite(pEnemy.position.x,pEnemy.position.y,'explosion');
+    this.game.time.events.add(Phaser.Timer.SECOND * 2, function(){Blut.kill();}, this);
     pShot.kill();
     //this._enemyclass.dealDmg(pShot.damage, pEnemy);
     pEnemy.enableBody = false;
     pEnemy.kill();
+    this._Player.addCurrency(5);
     // = null;
     console.log("greife Gegner an");
  },
@@ -252,24 +277,36 @@ render : function()
       case 1://Schaden erhöhen
          if(pTurret.get_DamagePrice() <= pPlayer.getCurrency())
          {
-           pTurret.upgrade(pStat);
            pPlayer.reduceCurrency(pTurret.get_DamagePrice());
+           pTurret.upgrade(1);
+         }
+         else {
+           var Fehlertext = this.game.add.text(11*32,10*32,'Nicht genügend Gold!',{font: '25px Roman',fill: '#A68200'});
+           this.game.time.events.add(Phaser.Timer.SECOND * 2, function(){Fehlertext.kill();}, this);
          }
         break;
 
       case 2://Speed erhöhen
       if(pTurret.get_SpeedPrice() <= pPlayer.getCurrency())
       {
-        pTurret.upgrade(pStat);
         pPlayer.reduceCurrency(pTurret.get_SpeedPrice());
+        pTurret.upgrade(2);
+      }
+      else {
+        var Fehlertext = this.game.add.text(11*32,10*32,'Nicht genügend Gold!',{font: '25px Roman',fill: '#A68200'});
+        this.game.time.events.add(Phaser.Timer.SECOND * 2, function(){Fehlertext.kill();}, this);
       }
         break;
 
       case 3://Range erhöhen
       if(pTurret.get_RangePrice() <= pPlayer.getCurrency())
       {
-        pTurret.upgrade(pStat);
         pPlayer.reduceCurrency(pTurret.get_RangePrice());
+        pTurret.upgrade(3);
+      }
+      else {
+        var Fehlertext = this.game.add.text(11*32,10*32,'Nicht genügend Gold!',{font: '25px Roman',fill: '#A68200'});
+        this.game.time.events.add(Phaser.Timer.SECOND * 2, function(){Fehlertext.kill();}, this);
       }
         break;
 

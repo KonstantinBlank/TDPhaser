@@ -14,6 +14,7 @@ preload.prototype = {
         this.game.load.image('button', 'assets/button/button.png');
         this.game.load.image('shot', 'assets/shots/fire.png');
         this.game.load.spritesheet('enemyeye', 'assets/enemies/enemyeye.png',32,32);
+        this.game.load.image('explosion','assets/death/explosion.png');
 
 
         //Tower

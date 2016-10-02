@@ -65,26 +65,29 @@ turret_Prefab.prototype.searchEnemy = function(pEnemies)
       {
         case 1:
             this._Damage ++;
-            this._DanagePrice * 2;
-            this._SpeedPrice * 1.5;
-            this._RangePrice * 1.5;
+            this._DamagePrice *= 2;
+            this._SpeedPrice *= 2;
+            this._RangePrice *= 2;
             break;
         case 2:
             this._AttackSpeed -= 1000;
-            this._DanagePrice * 1.5;
-            this._SpeedPrice * 2;
-            this._RangePrice * 1.5;
+            this._DamagePrice *= 2;
+            this._SpeedPrice *= 2;
+            this._RangePrice *= 2;
             break;
         case 3:
+
             this._Range += 50;
-            this._DanagePrice * 1.5;
-            this._SpeedPrice * 1.5;
+            this._DanagePrice * 2;
+            this._SpeedPrice * 2;
             this._RangePrice * 2;
-            this.body.setCircle(this._Range, -this._Range + 16, -this._Range +16);
+
+
             break;
         default:
             break;
       }
+      this.body.setCircle(this._Range, -this._Range + 16, -this._Range +16);
     };
 
     turret_Prefab.prototype.get_DamagePrice = function()
