@@ -183,10 +183,12 @@ update : function (){
   if(this.enemies.countLiving() <= 5 && this._time <= 0)
   {
     enemy1 = this.enemies.create(144,16,'enemyeye')
-    enemy1.enablebodie = true;
+    enemy1.enableBody = true;
     enemy1.anchor.setTo(0.5, 0.5);
     this.game.physics.enable(enemy1, Phaser.Physics.ARCADE);
     this._time = 200;
+    enemy1.animations.add('default', [0, 1, 2, 3], 5, true);
+    enemy1.animations.play('default');
   }
   else {
     this._time = this._time -1;
@@ -208,9 +210,6 @@ update : function (){
   }
 
   this.game.physics.arcade.overlap(this.testenemy,this._shots , this.shotHit, null, this);
-
-  this.enemy1.animations.add('default', [0, 1, 2, 3], 5, true);
-  this.enemy1.animations.play('default');
 
 },
 
