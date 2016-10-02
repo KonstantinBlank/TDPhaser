@@ -7,7 +7,7 @@ var thegame = function(game){
   var map;
   var layer;
 //  var _ListOfTurrets = new List();
-  this._Player = new class_player(this, "JP-Player");
+  this._Player = new class_player(this, "KKJLD");
   this._TowerListe = [];
   var _nicht_bebaubar;
   var cursors;
@@ -68,16 +68,14 @@ thegame.prototype = {
       this.enemies = this.game.add.physicsGroup();
       this.enemies.enableBody = true;
 
-<<<<<<< HEAD
-      enemies.add(testenemy);
-=======
+
       this.testenemy = this.enemies.create(144, 16, 'enemyeye');
       this.testenemy.anchor.setTo(0.5, 0.5);
       this.game.physics.enable(this.testenemy, Phaser.Physics.ARCADE);
       this.game.physics.enable(this.enemies, Phaser.Physics.ARCADE);
       this.testenemy.enableBody = true;
       //this.enemies.add(testenemy);
->>>>>>> origin/master
+
 
 >>>>>>> origin/master
 },
@@ -118,6 +116,7 @@ click : function(){
 
         //this.game.add.sprite(this.game.world.centerX,this.game.world.height-200,'playerRocket');
         else if (this._TowerListe[index] != undefined) {
+          this.killLeiste();
           this.showButtons = true;
           this.selectedTower = index;
           this.text1 = this.game.add.text(2*32,17*32,'Damage:'+this._TowerListe[index].getDamage(),{font: '25px Roman',fill: '#FFFFFF'});
@@ -183,7 +182,7 @@ update : function (){
 >>>>>>> origin/master
 =======
 
-  console.log(testenemy.position.x + "x ; y " + testenemy.position.y);
+  console.log(this.testenemy.position.x + "x ; y " + this.testenemy.position.y);
 
 >>>>>>> origin/master
   //enemy1 = enemies.create(144,16,'enemyeye')
