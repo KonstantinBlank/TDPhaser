@@ -47,11 +47,14 @@ turret_Prefab.prototype.searchEnemy = function(pEnemies)
     {
         if(this.game.time.time > this._nextFire && pEnemy != null)
         {
-          shot = this._shots.create(pTurret.x,pTurret.y,'shot');
+          var shot =  this.game.add.sprite(pTurret.position.x,pTurret.position.y, 'shot');
+          this._shots.add(shot);
+        //  var shot = this._shots.create(pTurret.position.x,pTurret.position.y,'shot');
           console.log(pTurret.x +" ; " + pTurret.y);
 
+
           //shot.damage = this._Damage;
-          this.game.physics.arcade.moveToObject(shot, pEnemy, 32);
+          this.game.physics.arcade.moveToObject(shot, pEnemy, 200);
 
           //pEnemy.dealDmg(this._Damage);
           this._nextFire = this.game.time.time + this._AttackSpeed;

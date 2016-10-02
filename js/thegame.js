@@ -34,10 +34,6 @@ var thegame = function(game){
 thegame.prototype = {
 
   create : function(){
-        this._shots = this.game.add.group();
-        this._shots.enableBody = true;
-
-        this._shots.physicsBodyType = Phaser.Physics.ARCADE;
 
     //  Because we're loading CSV map data we have to specify the tile size here or we can't render it
        this.map = this.game.add.tilemap('map', 32, 32);
@@ -73,6 +69,11 @@ thegame.prototype = {
       this.enemies = this.game.add.physicsGroup();
       this.enemies.enableBody = true;
 
+            this._shots = this.game.add.group();
+            this._shots.enableBody = true;
+
+            this._shots.physicsBodyType = Phaser.Physics.ARCADE;
+
 
       this.testenemy = this.enemies.create(144, 16, 'enemyeye');
       this.testenemy.anchor.setTo(0.5, 0.5);
@@ -82,6 +83,7 @@ thegame.prototype = {
 
       //this.enemies.add(testenemy);
       this.update_Currency();
+
 
 },
 
@@ -242,16 +244,17 @@ render : function()
 {
 /*
   var self  = this;
-  this.enemies.forEach(function(enemy)
+  this._shots.children.forEach(function(enemy)
   {
     self.game.debug.body(enemy);
-  });
+  });*/
 
-
+  /*
   for(property in this._TowerListe)
   {
       this.game.debug.body(this._TowerListe[property]);
   }*/
+
 
 },
 
@@ -268,8 +271,6 @@ render : function()
     this._CurrencyText.kill();
     this.update_Currency();
 
-
-    //this.game.time.events.add(Phaser.Timer.SECOND * 2, function(){Blut.kill();}, this);
     pShot.kill();
     //this._enemyclass.dealDmg(pShot.damage, pEnemy);
     pEnemy.enableBody = false;
