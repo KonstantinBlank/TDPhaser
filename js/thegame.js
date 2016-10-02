@@ -114,16 +114,16 @@ click : function(){
       var x = layer.getTileX(this.game.input.activePointer.worldX);
       var y = layer.getTileY(this.game.input.activePointer.worldY);
       var index = x+"-"+y;
-      if(this.map.getTile(x,y,layer).index != 967 && this.map.getTile(x,y,layer).index != 990 && this.map.getTile(x,y,layer).index != 989
-          && this.map.getTile(x,y,layer).index != 2944 && this.map.getTile(x,y,layer).index != 68)
+      if(this.map.getTile(x,y,layer).index != 1047 && this.map.getTile(x,y,layer).index != 979 && this.map.getTile(x,y,layer).index != 1001
+          && this.map.getTile(x,y,layer).index != 2719 && this.map.getTile(x,y,layer).index != 68 && this.map.getTile(x,y,layer).index != 1184 )
       {
         this.killLeiste();
 
         if (this._TowerListe[index] == undefined)
         {
-          var newTower = new turret_Prefab(this.game,x*32,y*32,"saggitarius", this._shots);
-          this._TowerListe[index] = newTower;
           if (this._Player.getCurrency() >= 100) {
+            var newTower = new turret_Prefab(this.game,x*32,y*32,"saggitarius", this._shots);
+            this._TowerListe[index] = newTower;
             this._Player.reduceCurrency(100);
             this._CurrencyText.kill();
             this.update_Currency();
