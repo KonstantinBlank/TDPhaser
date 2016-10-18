@@ -17,7 +17,7 @@ enemyclass = function ()
 
     create : function(pSpeed, pHp, pDmg /*,sprite*/){
 
-      console.log("Hello World");
+      //console.log("Hello World");
       _speed = pSpeed;
       _hp = pHp;
       _dmg  = pDmg;

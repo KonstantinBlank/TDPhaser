@@ -187,7 +187,7 @@ getTileProperties : function () {
     var tile = this.map.getTile(x, y, layer);
 
     tile.properties.wibble = true;
-    console.log(x+ ";" + y);
+    //console.log(x+ ";" + y);
 },
 
 updateMarker : function () {
@@ -279,7 +279,7 @@ render : function()
     this.enemies.remove(pEnemy);
 
     // = null;
-    console.log("greife Gegner an");
+  //  console.log("greife Gegner an");
  },
 
 

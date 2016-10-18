@@ -50,7 +50,7 @@ turret_Prefab.prototype.searchEnemy = function(pEnemies)
           var shot =  this.game.add.sprite(pTurret.position.x,pTurret.position.y, 'shot');
           this._shots.add(shot);
         //  var shot = this._shots.create(pTurret.position.x,pTurret.position.y,'shot');
-          console.log(pTurret.x +" ; " + pTurret.y);
+        //  console.log(pTurret.x +" ; " + pTurret.y);
 
 
           //shot.damage = this._Damage;
