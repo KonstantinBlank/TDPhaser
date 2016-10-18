@@ -92,7 +92,8 @@ enemyclass = function ()
        }
        if(this._waypoint == 8)
        {
-         enemy.kill();
+         enemy.destroy();
+         return;
        }
 
 

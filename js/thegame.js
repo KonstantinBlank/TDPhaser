@@ -63,17 +63,22 @@ thegame.prototype = {
        this.game.physics.startSystem(Phaser.Physics.ARCADE);
 
        //create waypoints
-       this._path = [[144, 16],[144, 144],[880, 144],[880, 272],[144, 272],[144, 400],[880, 400],[880, 496]];
+
+       this._path = [[144, 16],[144, 176],[912, 144],[880, 304],[112, 272],[144, 432],[912, 400],[880, 528]];
        this._waypoints = this.game.add.group();
        this._waypoints.enableBody = true;
        this._waypoints.physicsBodyType = Phaser.Physics.ARCADE;
-       for (var c = 0; c <= this._path.length(); c++)
+
+       for (var c = 0; c < this._path.length; c++)
        {
-         waypoint = this._waypoints.create(this._path[c][1]-16,this._path[c][2]-16,null)
+         console.log(c);
+         waypoint = this._waypoints.create() //this._path[c][0]-16,this._path[c][1]-16,null
          waypoint.enableBody = true;
-         waypoint.anchor.setTo(0.5, 0.5);
+        // waypoint.anchor.setTo(0.5, 0.5);
          this.game.physics.enable(waypoint, Phaser.Physics.ARCADE);
-         this.body.setSquare(this._path[c][1]-16,this._path[c][2]-16,32);
+
+         waypoint.body.setCircle(16,this._path[c][0]-16,this._path[c][1]-16);
+        // this.body.setCircle(this._Range, -this._Range + 16, -this._Range +16);
        }
 
 
@@ -225,6 +230,7 @@ update : function (){
   {
     enemy1 = this.enemies.create(144,16,'enemyeye')
     enemy1.enableBody = true;
+    enemy1.body.setCircle(16,0,0);
     enemy1.anchor.setTo(0.5, 0.5);
     this.game.physics.enable(enemy1, Phaser.Physics.ARCADE);
     this._time = 60;
@@ -240,7 +246,7 @@ update : function (){
   var self = this;
   this.enemies.forEach(function(enemy) {
 
-    self._enemyclass.checkPath(enemy); //IMPLEMENTIEREN!
+    self._enemyclass.checkPath(enemy);
 
   });//forEach
 
@@ -257,6 +263,21 @@ update : function (){
 
 render : function()
 {
+  var self  = this;
+  this._waypoints.children.forEach(function(waypoint)
+  {
+    self.game.debug.body(waypoint);
+  });
+
+  this.enemies.children.forEach(function(enemy)
+  {
+    self.game.debug.body(enemy);
+  });
+
+  this._shots.children.forEach(function(shot)
+  {
+    self.game.debug.body(shot);
+  });
 /*
   var self  = this;
   this._shots.children.forEach(function(enemy)
@@ -286,12 +307,15 @@ render : function()
     this._CurrencyText.kill();
     this.update_Currency();
 
-    pShot.kill();
+
     this._shots.remove(pShot);
+    pShot.destroy();
     //this._enemyclass.dealDmg(pShot.damage, pEnemy);
     pEnemy.enableBody = false;
-    pEnemy.kill();
     this.enemies.remove(pEnemy);
+    pEnemy.destroy();
+
+
 
     // = null;
   //  console.log("greife Gegner an");
