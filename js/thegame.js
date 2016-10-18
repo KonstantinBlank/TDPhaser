@@ -1,6 +1,5 @@
 /**
  * Created by Schlag on 01.07.2016
- * neue Version nach logauskommentiert (18.10.2016)
  */
 var thegame = function(game){
 
@@ -61,20 +60,6 @@ thegame.prototype = {
        this.game.input.onDown.add(this.click, this);
 
        this.game.physics.startSystem(Phaser.Physics.ARCADE);
-
-       //create waypoints
-       this._path = [[144, 16],[144, 144],[880, 144],[880, 272],[144, 272],[144, 400],[880, 400],[880, 496]];
-       this._waypoints = this.game.add.group();
-       this._waypoints.enableBody = true;
-       this._waypoints.physicsBodyType = Phaser.Physics.ARCADE;
-       for (var c = 0; c <= this._path.length(); c++)
-       {
-         waypoint = this._waypoints.create(this._path[c][1]-16,this._path[c][2]-16,null)
-         waypoint.enableBody = true;
-         waypoint.anchor.setTo(0.5, 0.5);
-         this.game.physics.enable(waypoint, Phaser.Physics.ARCADE);
-         this.body.setSquare(this._path[c][1]-16,this._path[c][2]-16,32);
-       }
 
 
 
