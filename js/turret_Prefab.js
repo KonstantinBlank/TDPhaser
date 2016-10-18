@@ -54,7 +54,7 @@ turret_Prefab.prototype.searchEnemy = function(pEnemies)
 
 
           //shot.damage = this._Damage;
-          this.game.physics.arcade.moveToObject(shot, pEnemy, 200);
+          this.game.physics.arcade.moveToObject(shot, pEnemy, 10);
 
           //pEnemy.dealDmg(this._Damage);
           this._nextFire = this.game.time.time + this._AttackSpeed;
