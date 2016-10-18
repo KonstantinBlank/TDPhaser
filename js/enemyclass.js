@@ -15,12 +15,9 @@ enemyclass = function ()
 
 
 
-    create : function(pSpeed, pHp, pDmg /*,sprite*/){
+    create : function(){
 
       //console.log("Hello World");
-      _speed = pSpeed;
-      _hp = pHp;
-      _dmg  = pDmg;
       //_sprite = sprite;
       this._path = [[144, 16, 1],[144, 144, 1],[880, 144, 1],[880, 272, 1],[144, 272, -1],[144, 400, 1],[880, 400, 1],[880, 496, 1]];
     },

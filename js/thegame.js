@@ -64,7 +64,8 @@ thegame.prototype = {
 
        //create waypoints
 
-       this._path = [[144, 16],[144, 176],[912, 144],[880, 304],[112, 272],[144, 432],[912, 400],[880, 528]];
+       this._path = [/*[144, 16],*/[144, 176],[912, 144],[880, 304],[112, 272],[144, 432],[912, 400],[880, 528]];
+       this._enemypath = [[144, 144],[880, 144],[880, 272],[144, 272],[144, 400],[880, 400],[880, 496]];
        this._waypoints = this.game.add.group();
        this._waypoints.enableBody = true;
        this._waypoints.physicsBodyType = Phaser.Physics.ARCADE;
@@ -74,17 +75,17 @@ thegame.prototype = {
          console.log(c);
          waypoint = this._waypoints.create() //this._path[c][0]-16,this._path[c][1]-16,null
          waypoint.enableBody = true;
-        // waypoint.anchor.setTo(0.5, 0.5);
          this.game.physics.enable(waypoint, Phaser.Physics.ARCADE);
 
          waypoint.body.setCircle(16,this._path[c][0]-16,this._path[c][1]-16);
+         waypoint.wp = c;
         // this.body.setCircle(this._Range, -this._Range + 16, -this._Range +16);
        }
 
 
 
       this._enemyclass = new enemyclass();
-      this._enemyclass.create(0,0,0);
+      this._enemyclass.create();
 
       this.enemies = this.game.add.physicsGroup();
       this.enemies.enableBody = true;
@@ -95,11 +96,11 @@ thegame.prototype = {
             this._shots.physicsBodyType = Phaser.Physics.ARCADE;
 
 
-      this.testenemy = this.enemies.create(144, 16, 'enemyeye');
-      this.testenemy.anchor.setTo(0.5, 0.5);
-      this.game.physics.enable(this.testenemy, Phaser.Physics.ARCADE);
+      //this.testenemy = this.enemies.create(144, 16, 'enemyeye');
+      //this.testenemy.anchor.setTo(0.5, 0.5);
+      //this.game.physics.enable(this.testenemy, Phaser.Physics.ARCADE);
       this.game.physics.enable(this.enemies, Phaser.Physics.ARCADE);
-      this.testenemy.enableBody = true;
+      //this.testenemy.enableBody = true;
 
       //this.enemies.add(testenemy);
       this.update_Currency();
@@ -236,19 +237,21 @@ update : function (){
     this._time = 60;
     enemy1.animations.add('default', [0, 1, 2, 3], 5, true);
     enemy1.animations.play('default');
+    enemy1.wp = 0;
     enemy1.hp = 50;
+    this.game.physics.arcade.moveToXY(enemy1,this._path[0][0],this._path[0][0],100);
   }
   else {
     this._time = this._time -1;
   }
 
 
-  var self = this;
-  this.enemies.forEach(function(enemy) {
+  /*var self = this;
+  this.enemies.forEach(function(enemy) {    //ALtes Pathfinding
 
     self._enemyclass.checkPath(enemy);
 
-  });//forEach
+  });//forEach */
 
   //this._TowerListe.forEach(function(pTower)
   for(property in this._TowerListe)
@@ -257,8 +260,26 @@ update : function (){
   }
 
   this.game.physics.arcade.overlap(this.enemies,this._shots , this.shotHit, null, this);
-  this.game.physics.arcade.overlap(this._testenemy,this._shots , this.shotHit, null, this);
+  //this.game.physics.arcade.overlap(this._testenemy,this._shots , this.shotHit, null, this);
+  this.game.physics.arcade.overlap(this.enemies,this._waypoints , this.checkPath, null, this);
 
+},
+
+checkPath : function(pEnemy, pWaypoint)
+{
+   console.log(pEnemy.wp);
+   if(pWaypoint.wp >= 6)
+   {
+     this.enemies.remove(pEnemy);
+     pEnemy.destroy();
+   }
+   else {
+     pEnemy.position.x = this._enemypath[pWaypoint.wp][0];
+     pEnemy.position.y = this._enemypath[pWaypoint.wp][1];
+    // pEnemy.wp += 1;
+  //   console.log("Moveto "+ pEnemy.wp)
+     this.game.physics.arcade.moveToXY(pEnemy,this._path[pWaypoint.wp+1][0],this._path[pWaypoint.wp+1][1],100);
+   }
 },
 
 render : function()
