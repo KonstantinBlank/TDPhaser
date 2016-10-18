@@ -227,7 +227,7 @@ update : function (){
 
   //console.log(this.testenemy.position.x + "x ; y " + this.testenemy.position.y);
 
-  if(this.enemies.countLiving() <= 30 && this._time <= 0)
+  if(this.enemies.countLiving() <= 0 && this._time <= 0)
   {
     enemy1 = this.enemies.create(144,16,'enemyeye')
     enemy1.enableBody = true;
